@@ -523,14 +523,21 @@ img.img-failed{ opacity:0 !important; }
 
 /* ---------- fotos de fundo das seções ---------- */
 .sec-photo{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
-.sec-photo img{ position:absolute; left:0; top:-10%; width:100%; height:120%; object-fit:cover; opacity:.42; filter:saturate(.6) brightness(.9); will-change:transform; }
+.sec-photo img{ position:absolute; left:0; top:-10%; width:100%; height:120%; object-fit:cover; opacity:.38; filter:saturate(.7); will-change:transform; }
+/* mesmo estilo da faixa "O problema nunca foi importar": escuro, com uma luz azul
+   revelando os containers. --lx/--ly mudam a posição da luz em cada seção. */
 .sec-photo::after{
   content:''; position:absolute; inset:0;
   background:
-    linear-gradient(180deg, var(--bg) 0%, rgba(11,14,16,.45) 22%, rgba(11,14,16,.45) 78%, var(--bg) 100%),
-    linear-gradient(90deg, rgba(11,14,16,.75) 0%, rgba(11,14,16,.25) 50%, rgba(11,14,16,.75) 100%),
-    linear-gradient(0deg, rgba(30,70,96,.28), rgba(30,70,96,.28));
+    linear-gradient(180deg, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%),
+    radial-gradient(ellipse 60% 70% at var(--lx, 50%) var(--ly, 50%), rgba(30,70,96,.72), rgba(11,14,16,.96) 75%);
 }
+#decisoes .sec-photo{ --lx:30%; --ly:60%; }
+#metodo .sec-photo{ --lx:70%; --ly:45%; }
+.compare-section .sec-photo{ --lx:50%; --ly:55%; }
+#acompanhamento .sec-photo{ --lx:25%; --ly:50%; }
+#para-quem .sec-photo{ --lx:75%; --ly:50%; }
+#faq .sec-photo{ --lx:50%; --ly:40%; }
 .section > .container{ z-index:1; }
 
 /* =========================================================
@@ -579,7 +586,7 @@ img.img-failed{ opacity:0 !important; }
 .history{ overflow:hidden; }
 .history-bg{ position:absolute; inset:0; z-index:0; overflow:hidden; }
 .history-bg img{ position:absolute; left:0; top:-10%; width:100%; height:120%; object-fit:cover; opacity:.4; filter:saturate(.7); will-change:transform; }
-.history-bg::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, var(--bg) 0%, rgba(11,14,16,.72) 30%, rgba(11,14,16,.72) 70%, var(--bg) 100%), linear-gradient(0deg, rgba(30,70,96,.3), rgba(30,70,96,.3)); }
+.history-bg::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%), radial-gradient(ellipse 65% 60% at 60% 55%, rgba(30,70,96,.7), rgba(11,14,16,.95) 75%); }
 .history-head{ max-width:780px; margin-bottom:64px; }
 .history-head h2{ font-size:clamp(2.1rem, 4.4vw, 3.4rem); }
 .history-head p{ margin-top:18px; color:var(--text); font-size:1.05rem; }
