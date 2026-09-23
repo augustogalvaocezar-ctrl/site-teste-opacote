@@ -50,6 +50,35 @@
   window.addEventListener('resize', onScroll);
   onScroll();
 
+  /* ---------- Transição entre seções (scroll) ---------- */
+  const fxSections = reduceMotion ? [] : Array.from(document.querySelectorAll('main > section:not(.hero):not(.marquee)'));
+  if (fxSections.length) {
+    document.documentElement.classList.add('js-fx');
+    fxSections.forEach((s) => {
+      s.classList.add('fx-section');
+      const beam = document.createElement('span');
+      beam.className = 'fx-beam';
+      beam.setAttribute('aria-hidden', 'true');
+      s.prepend(beam);
+    });
+    let fxTick = false;
+    const updateFx = () => {
+      const vh = window.innerHeight;
+      fxSections.forEach((s) => {
+        const top = s.getBoundingClientRect().top;
+        // 0 quando o topo da seção aparece no rodapé da tela, 1 quando chega a 30% da altura
+        const p = Math.min(Math.max((vh - top) / (vh * 0.7), 0), 1);
+        s.style.setProperty('--p', p.toFixed(3));
+      });
+      fxTick = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!fxTick) { requestAnimationFrame(updateFx); fxTick = true; }
+    }, { passive: true });
+    window.addEventListener('resize', updateFx);
+    updateFx();
+  }
+
   /* ---------- Brilho que segue o cursor ---------- */
   const cursorGlow = document.getElementById('cursorGlow');
   if (fx) {
