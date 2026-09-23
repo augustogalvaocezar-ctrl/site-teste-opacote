@@ -580,49 +580,6 @@ img.img-failed{ opacity:0 !important; }
 .cinema-result{ font-size:1.05rem; color:var(--text); }
 .cinema-result strong{ display:block; margin-top:6px; font-size:clamp(1.6rem, 2.6vw, 2.1rem); font-weight:900; letter-spacing:-.02em; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
-/* ---------- containers caindo e empilhando ---------- */
-.container-stack{
-  --w:112px; --h:44px; --gap:4px;
-  position:absolute; z-index:2; left:clamp(16px, 8vw, 150px); bottom:calc(16% + 170px);
-  width:calc(4 * var(--w) + 3 * var(--gap)); height:calc(4 * var(--h) + 3 * var(--gap));
-  pointer-events:none;
-}
-.container-stack .box{
-  position:absolute;
-  left:calc(var(--x) * (var(--w) + var(--gap))); bottom:calc(var(--y) * (var(--h) + var(--gap)));
-  width:var(--w); height:var(--h); border-radius:3px;
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.14) 0 2px, transparent 2px 9px),
-    linear-gradient(180deg, var(--c1), var(--c2));
-  box-shadow:inset 0 0 0 2px rgba(0,0,0,.25), inset 0 3px 0 rgba(255,255,255,.18), 0 10px 18px -8px rgba(0,0,0,.8);
-  opacity:0; transform:translateY(-120vh) rotate(-4deg);
-}
-.container-stack .box::before{ /* portas na lateral */
-  content:''; position:absolute; right:6px; top:6px; bottom:6px; width:22%;
-  border-left:2px solid rgba(0,0,0,.3); border-right:2px solid rgba(0,0,0,.3);
-  background:repeating-linear-gradient(0deg, transparent 0 7px, rgba(0,0,0,.18) 7px 9px);
-}
-.container-stack .box::after{ /* sombra no chão ao cair */
-  content:''; position:absolute; left:10%; right:10%; bottom:-6px; height:6px; border-radius:50%;
-  background:rgba(0,0,0,.45); filter:blur(3px); opacity:0;
-}
-.c-navy{ --c1:#2A5B7A; --c2:#1E4660; }
-.c-blue{ --c1:#5A9CBB; --c2:#3F7A97; }
-.c-light{ --c1:#9FDDF5; --c2:#6FB2CE; }
-.c-dark{ --c1:#24313A; --c2:#151A1F; }
-.container-stack.in-view .box{ animation:boxDrop .75s cubic-bezier(.5,0,.75,0) forwards, boxLand .45s cubic-bezier(.3,1.6,.5,1) forwards; animation-delay:calc(var(--i) * 260ms + 200ms), calc(var(--i) * 260ms + 950ms); }
-.container-stack.in-view .box::after{ animation:boxShadow .75s ease-in forwards; animation-delay:calc(var(--i) * 260ms + 200ms); }
-@keyframes boxDrop{ 0%{ opacity:1; transform:translateY(-120vh) rotate(-4deg); } 100%{ opacity:1; transform:translateY(0) rotate(0); } }
-@keyframes boxLand{ 0%{ opacity:1; transform:translateY(0) scaleY(.86) scaleX(1.04); } 60%{ opacity:1; transform:translateY(-6px) scaleY(1.03); } 100%{ opacity:1; transform:none; } }
-@keyframes boxShadow{ from{ opacity:0; } to{ opacity:1; } }
-.container-stack.in-view::after{ /* poeira ao final */
-  content:''; position:absolute; left:-10%; right:-10%; bottom:-10px; height:20px; border-radius:50%;
-  background:radial-gradient(ellipse, rgba(159,221,245,.35), transparent 70%);
-  opacity:0; animation:dust 1.2s ease-out forwards; animation-delay:.9s;
-}
-@keyframes dust{ 0%{ opacity:0; transform:scaleX(.6); } 30%{ opacity:1; } 100%{ opacity:0; transform:scaleX(1.3); } }
-@media (prefers-reduced-motion: reduce){ .container-stack .box{ opacity:1; transform:none; } }
-
 /* =========================================================
    HISTÓRIA (fotos reais da operação)
    ========================================================= */
@@ -965,7 +922,6 @@ img.img-failed{ opacity:0 !important; }
   .cinema-tag{ top:24px; }
   .cinema-stat{ bottom:auto; top:calc(clamp(340px, 70vw, 520px) - 170px); }
   .cinema-stat strong{ font-size:clamp(3.4rem, 13vw, 6rem); }
-  .container-stack{ --w:62px; --h:25px; --gap:3px; left:auto; right:16px; bottom:auto; top:calc(clamp(340px, 70vw, 520px) - 240px); }
   .exp-photo{ max-width:520px; }
   /* linha do tempo vira carrossel com rolagem lateral própria */
   .tl{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:minmax(220px, 34%); overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px; scrollbar-width:thin; }
@@ -1033,7 +989,7 @@ img.img-failed{ opacity:0 !important; }
   .cinema-tag{ top:18px; font-size:.76rem; }
   .cinema-media{ height:460px; }
   .cinema-stat{ top:290px; }
-  .container-stack{ --w:54px; --h:22px; --gap:3px; left:16px; right:auto; top:96px; }
+
   .cinema-stat > span{ font-size:.78rem; }
   .btn{ white-space:normal; text-align:center; }
   .hero-lead{ gap:16px; }
@@ -1128,4 +1084,16 @@ img.img-failed{ opacity:0 !important; }
 @media (hover: none){
   .step:hover, .route-stop:hover .route-card, .tl-item:hover .tl-photo, .j-item:hover{ transform:none; box-shadow:none; }
   .step:hover{ border-color:var(--line); }
+}
+
+/* ---------- retrato sem moldura: a foto se dissolve no fundo ---------- */
+.portrait-shade{
+  position:absolute; z-index:1; left:50%; top:48%; width:95%; aspect-ratio:1 / 1.05; transform:translate(-50%,-50%);
+  border-radius:50%; background:radial-gradient(closest-side, rgba(11,14,16,.92) 55%, rgba(11,14,16,0) 100%);
+}
+/* esfumado no contêiner: na imagem animada o Chrome ignora a máscara */
+.hero .portrait{ -webkit-mask-image:none; mask-image:none; }
+.hero .portrait-wrap{
+  -webkit-mask-image:radial-gradient(ellipse 40% 54% at 50% 50%, #000 62%, transparent 100%);
+  mask-image:radial-gradient(ellipse 40% 54% at 50% 50%, #000 62%, transparent 100%);
 }
