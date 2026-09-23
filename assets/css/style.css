@@ -1034,3 +1034,27 @@ img.img-failed{ opacity:0 !important; }
   .site-footer{ padding-bottom:120px; }
   .sticky-cta.hide-inline{ transform:translateY(160%); }
 }
+
+/* =========================================================
+   CARROSSÉIS NO CELULAR: só deslizar, sem nada se mexendo
+   ========================================================= */
+@media (max-width: 940px){
+  .hl-grid, .steps, .offer-grid, .tl, .route{
+    scroll-snap-type:x proximity; overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch; touch-action:pan-x pan-y; scrollbar-width:none;
+  }
+  .hl-grid::-webkit-scrollbar, .steps::-webkit-scrollbar, .offer-grid::-webkit-scrollbar, .tl::-webkit-scrollbar, .route::-webkit-scrollbar{ display:none; }
+  /* os cards de dentro não animam entrada nem reagem ao toque */
+  .hl-grid > *, .steps > *, .offer-grid > *, .tl > *, .route > *{
+    opacity:1 !important; transform:none !important; filter:none !important; transition:none !important; animation:none !important;
+  }
+  .hl-grid > *::after, .steps > *::after, .offer-grid > *::after, .route-card::after{ display:none; }
+  .tl-item::after{ transform:scaleX(1) !important; }
+  .route-stop .route-card, .route-stop .route-card img, .route-stop .route-node,
+  .tl-item .tl-photo, .tl-item .tl-photo img{ transform:none !important; transition:none !important; }
+  .route-runner{ display:none; }
+}
+@media (hover: none){
+  .step:hover, .route-stop:hover .route-card, .tl-item:hover .tl-photo, .j-item:hover{ transform:none; box-shadow:none; }
+  .step:hover{ border-color:var(--line); }
+}

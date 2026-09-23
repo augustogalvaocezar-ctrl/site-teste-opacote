@@ -226,16 +226,17 @@
     const cards = Array.from(group.querySelectorAll('.hl-card'));
     const initial = cards.find((c) => c.classList.contains('is-hl'));
     const activate = (card) => cards.forEach((c) => c.classList.toggle('is-hl', c === card));
+    // só no mouse: no toque o destaque trocando fazia o carrossel "dançar"
+    if (!finePointer) return;
     cards.forEach((card) => {
       card.addEventListener('pointerenter', () => activate(card));
       card.addEventListener('focusin', () => activate(card));
-      card.addEventListener('click', () => activate(card));
     });
     group.addEventListener('pointerleave', () => activate(initial));
   });
 
   /* ---------- Spotlight dentro dos cards ---------- */
-  document.querySelectorAll('.glow-card').forEach((card) => {
+  if (finePointer) document.querySelectorAll('.glow-card').forEach((card) => {
     card.addEventListener('pointermove', (e) => {
       const r = card.getBoundingClientRect();
       card.style.setProperty('--mx', `${e.clientX - r.left}px`);
