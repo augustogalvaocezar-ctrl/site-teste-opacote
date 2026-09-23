@@ -212,21 +212,10 @@
   const fitButtons = Array.from(document.querySelectorAll('#fitList button'));
   const fitFill = document.getElementById('fitFill');
   const fitCount = document.getElementById('fitCount');
-  const fitMsg = document.getElementById('fitMsg');
-  const fitMessages = [
-    'Cada item marcado aproxima você do perfil ideal.',
-    'Bom começo. Continue marcando o que tem a ver com você.',
-    'Você já tem pontos em comum com quem mais aproveita a mentoria.',
-    'Seu momento combina com o acompanhamento. Vale verificar a disponibilidade.',
-    'Perfil muito alinhado. Esta mentoria foi pensada para empresas como a sua.',
-    'Perfil muito alinhado. Esta mentoria foi pensada para empresas como a sua.',
-    'Perfil ideal. Garanta sua conversa antes que o ciclo feche.',
-  ];
   const updateFit = () => {
     const n = fitButtons.filter((b) => b.getAttribute('aria-pressed') === 'true').length;
     fitFill.style.width = `${(n / fitButtons.length) * 100}%`;
     fitCount.textContent = `${n}/${fitButtons.length}`;
-    fitMsg.textContent = fitMessages[n];
   };
   fitButtons.forEach((b) => b.addEventListener('click', () => {
     b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'));

@@ -336,6 +336,18 @@ img.img-failed{ opacity:0 !important; }
 .hl-card.is-hl .hl-more{ opacity:1; transform:none; }
 .hl-card.is-hl .offer-ico{ background:#06222F; color:var(--bright); }
 
+/* textos vindos do site original */
+.hero-note{ margin-top:16px; font-size:.85rem; color:var(--muted); }
+.impact-sub{ margin:40px auto 0; max-width:640px; font-size:clamp(1.15rem, 2.2vw, 1.5rem); font-weight:300; color:var(--text); }
+.exp-facts{ display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.exp-facts li{ padding:9px 14px; border-radius:999px; font-size:.86rem; color:var(--muted); background:var(--glass); border:1px solid var(--line-2); }
+.exp-facts strong{ color:var(--bright); }
+.traj-sub{ max-width:720px; margin:80px 0 10px; }
+.traj-sub h3{ font-size:clamp(1.6rem, 3vw, 2.3rem); margin-bottom:14px; }
+.traj-sub p{ color:var(--muted); }
+.fit-btn{ margin-top:26px; }
+.compare-cta .btn{ margin-top:30px; }
+
 /* =========================================================
    FAIXA DE IMPACTO
    ========================================================= */
