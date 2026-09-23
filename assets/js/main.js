@@ -54,13 +54,7 @@
   const fxSections = reduceMotion ? [] : Array.from(document.querySelectorAll('main > section:not(.hero):not(.marquee)'));
   if (fxSections.length) {
     document.documentElement.classList.add('js-fx');
-    fxSections.forEach((s) => {
-      s.classList.add('fx-section');
-      const beam = document.createElement('span');
-      beam.className = 'fx-beam';
-      beam.setAttribute('aria-hidden', 'true');
-      s.prepend(beam);
-    });
+    fxSections.forEach((s) => s.classList.add('fx-section'));
     let fxTick = false;
     const updateFx = () => {
       const vh = window.innerHeight;
