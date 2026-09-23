@@ -277,11 +277,28 @@ img.img-failed{ opacity:0 !important; }
 .hero-stats li:first-child{ padding-left:0; border-left:0; }
 .hero-stats strong{ display:block; white-space:nowrap; font-size:1.6rem; line-height:1.1; font-weight:800; }
 .hero-stats li > span{ display:block; margin-top:4px; font-size:.8rem; color:var(--muted); }
-.fc-china{ left:-2%; bottom:14%; animation:floatY 6s ease-in-out infinite; }
 
 /* retrato */
 .hero-visual{ position:relative; }
 .orbit-stage{ position:relative; width:100%; max-width:540px; margin-left:auto; aspect-ratio:600 / 700; transition:transform .8s var(--ease); }
+.portrait-wrap{ position:absolute; inset:0; }
+/* "palco" em arco atrás do Paulo: a cabeça sai por cima e esconde o fundo escuro da foto */
+.portrait-arch{
+  position:absolute; z-index:0; left:12%; right:12%; top:5%; bottom:5%;
+  border-radius:999px 999px 28px 28px; overflow:hidden;
+  /* miolo no mesmo tom do fundo da foto; o azul fica só na borda */
+  background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(118,191,221,.16), transparent 70%), #0B0E10;
+  border:1px solid rgba(118,191,221,.45);
+  box-shadow:0 0 0 8px rgba(118,191,221,.05), 0 0 90px -16px rgba(118,191,221,.7), inset 0 0 70px -10px rgba(75,138,169,.55);
+}
+.portrait-arch::before{
+  content:''; position:absolute; inset:0;
+  background-image:linear-gradient(rgba(118,191,221,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(118,191,221,.08) 1px, transparent 1px);
+  background-size:28px 28px;
+  mask-image:linear-gradient(180deg, #000, transparent 75%); -webkit-mask-image:linear-gradient(180deg, #000, transparent 75%);
+}
+.arch-shine{ position:absolute; top:-40%; left:-60%; width:40%; height:180%; transform:rotate(20deg); background:linear-gradient(90deg, transparent, rgba(159,221,245,.18), transparent); animation:archShine 7s ease-in-out infinite; }
+@keyframes archShine{ 0%,60%{ left:-60%; } 100%{ left:130%; } }
 .portrait-glow{
   position:absolute; z-index:1; left:50%; top:46%; width:78%; aspect-ratio:1; transform:translate(-50%,-50%);
   border-radius:50%; background:radial-gradient(circle, rgba(118,191,221,.45) 0%, rgba(30,70,96,.3) 38%, transparent 68%);
@@ -289,11 +306,11 @@ img.img-failed{ opacity:0 !important; }
 }
 @keyframes pulse{ 50%{ opacity:.65; transform:translate(-50%,-50%) scale(1.08); } }
 .portrait{
-  position:absolute; z-index:2; left:50%; top:4%; width:82%; transform:translateX(-50%);
-  /* esfuma as quatro bordas da foto para ela se fundir ao fundo */
-  -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 14%, #000 72%, transparent 97%), linear-gradient(90deg, transparent 0, #000 20%, #000 80%, transparent 100%);
+  position:absolute; z-index:2; left:50%; top:7%; width:82%; transform:translateX(-50%);
+  /* esfuma laterais e base; o arco atrás esconde o fundo escuro da foto */
+  -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 8%, #000 82%, transparent 99%), linear-gradient(90deg, transparent 4%, #000 22%, #000 78%, transparent 96%);
   -webkit-mask-composite:source-in;
-  mask-image:linear-gradient(180deg, transparent 0, #000 14%, #000 72%, transparent 97%), linear-gradient(90deg, transparent 0, #000 20%, #000 80%, transparent 100%);
+  mask-image:linear-gradient(180deg, transparent 0, #000 8%, #000 82%, transparent 99%), linear-gradient(90deg, transparent 4%, #000 22%, #000 78%, transparent 96%);
   mask-composite:intersect;
 }
 .float-card{
@@ -305,9 +322,9 @@ img.img-failed{ opacity:0 !important; }
 .float-card strong{ display:block; font-size:1.02rem; line-height:1.2; }
 .float-card small{ display:block; font-size:.74rem; color:var(--muted); }
 .fc-ico{ width:36px; height:36px; display:grid; place-items:center; border-radius:10px; background:rgba(118,191,221,.14); color:var(--bright); }
-.fc-1{ left:-4%; top:22%; animation:floatY 6s ease-in-out infinite; }
-.fc-2{ right:-6%; top:48%; animation:floatY 7s ease-in-out -2s infinite; }
-.fc-3{ left:2%; bottom:14%; animation:floatY 6.5s ease-in-out -4s infinite; }
+.fc-1{ left:-6%; top:26%; animation:floatY 6s ease-in-out infinite; }
+.fc-2{ right:-8%; top:52%; animation:floatY 7s ease-in-out -2s infinite; }
+.fc-3{ left:-2%; bottom:10%; animation:floatY 6.5s ease-in-out -4s infinite; }
 @keyframes floatY{ 50%{ transform:translateY(-12px); } }
 .live-dot{ width:10px; height:10px; border-radius:50%; background:var(--bright); box-shadow:0 0 0 0 rgba(118,191,221,.7); animation:ping 1.8s infinite; flex-shrink:0; }
 @keyframes ping{ 70%{ box-shadow:0 0 0 12px rgba(118,191,221,0); } 100%{ box-shadow:0 0 0 0 rgba(118,191,221,0); } }
@@ -716,10 +733,9 @@ img.img-failed{ opacity:0 !important; }
   .fc-ico{ width:30px; height:30px; }
   /* no celular os cards saem de cima da foto e viram uma grade abaixo dela */
   .orbit-stage{ aspect-ratio:auto; display:grid; grid-template-columns:1fr 1fr; gap:10px; max-width:none; }
-  .portrait-glow{ top:30%; }
-  .portrait{ position:relative; grid-column:1 / -1; left:auto; top:auto; transform:none; width:78%; max-width:340px; margin:0 auto -30px; }
+  .portrait-wrap{ position:relative; grid-column:1 / -1; aspect-ratio:600 / 640; margin-bottom:-24px; }
   .float-card{ position:relative; inset:auto; animation:none; }
-  .fc-china{ grid-column:1 / -1; justify-self:center; }
+  .fc-3{ grid-column:1 / -1; }
   .hero-stats{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
   .hero-stats li{ padding:0 12px; }
   .hero-stats strong{ font-size:1.15rem; }
