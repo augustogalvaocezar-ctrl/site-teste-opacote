@@ -479,6 +479,18 @@ img.img-failed{ opacity:0 !important; }
 .tl-item h4{ margin:0 0 6px; font-size:1.1rem; line-height:1.25; font-weight:800; color:var(--white); }
 .tl-item p{ font-size:.88rem; color:var(--muted); }
 
+/* versão "gráfico": os cards sobem em degraus e a curva liga os pontos */
+.tl-rise{ position:relative; align-items:start; padding-top:20px; }
+.tl-rise .tl-item{ z-index:1; margin-top:calc((4 - var(--i)) * 64px); }
+.tl-rise .tl-item::before, .tl-rise .tl-item::after{ display:none; }
+.tl-rise .tl-dot{ width:20px; height:20px; margin-left:-2px; background:var(--bg); }
+.tl-rise .tl-now .tl-dot{ background:var(--bright); }
+.tl-curve{ position:absolute; inset:0; z-index:0; width:100%; height:100%; overflow:visible; pointer-events:none; }
+.tl-line{ stroke-dasharray:var(--len, 2000); stroke-dashoffset:var(--len, 2000); filter:drop-shadow(0 0 8px rgba(118,191,221,.85)); transition:stroke-dashoffset 2.4s var(--ease) .3s; }
+.tl-area{ opacity:0; transition:opacity 1.4s ease 1.4s; }
+.tl-rise.in-view .tl-line{ stroke-dashoffset:0; }
+.tl-rise.in-view .tl-area{ opacity:1; }
+
 /* =========================================================
    GALERIA
    ========================================================= */
@@ -665,6 +677,11 @@ img.img-failed{ opacity:0 !important; }
   /* linha do tempo vira carrossel com rolagem lateral própria */
   .tl{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:minmax(220px, 34%); overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px; scrollbar-width:thin; }
   .tl-item{ scroll-snap-align:start; }
+  /* no carrossel volta a linha reta entre os pontos */
+  .tl-rise .tl-item{ margin-top:0; }
+  .tl-rise .tl-item::before, .tl-rise .tl-item::after{ display:block; }
+  .tl-rise .tl-item:last-child::before, .tl-rise .tl-item:last-child::after{ display:none; }
+  .tl-curve{ display:none; }
   .traj-head{ gap:24px; }
   /* gráfico vira linha do tempo em lista */
   .traj-chart{ aspect-ratio:auto; display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-left:8px; padding-left:26px; border-left:2px solid var(--bright); box-shadow:-8px 0 20px -12px var(--bright); }

@@ -100,7 +100,7 @@
   }
 
   /* ---------- Reveal ao rolar ---------- */
-  const revealEls = document.querySelectorAll('.reveal, .steps, .compare');
+  const revealEls = document.querySelectorAll('.reveal, .steps, .compare, .tl');
   if (reduceMotion || !hasIO) {
     revealEls.forEach((el) => el.classList.add('in-view'));
   } else {
@@ -146,6 +146,44 @@
       el.textContent = formatNumber(0, el);
       counterObserver.observe(el);
     });
+  }
+
+  /* ---------- Curva de crescimento da história (liga os pontos de cada ano) ---------- */
+  const tl = document.getElementById('timeline');
+  const curve = tl && tl.querySelector('.tl-curve');
+  if (curve) {
+    const line = curve.querySelector('.tl-line');
+    const area = curve.querySelector('.tl-area');
+    const dots = Array.from(tl.querySelectorAll('.tl-dot'));
+    const drawCurve = () => {
+      if (getComputedStyle(curve).display === 'none') return;
+      // offsets ignoram o transform da animação de entrada dos cards
+      const w = tl.clientWidth;
+      const h = tl.clientHeight;
+      const pts = dots.map((d) => {
+        const item = d.parentElement;
+        return [item.offsetLeft + d.offsetLeft + d.offsetWidth / 2, item.offsetTop + d.offsetTop + d.offsetHeight / 2];
+      });
+      pts.push([w, pts[pts.length - 1][1] - 24]);
+      let d = `M${pts[0][0]} ${pts[0][1]}`;
+      for (let i = 0; i < pts.length - 1; i++) {
+        const p0 = pts[i - 1] || pts[i];
+        const p1 = pts[i];
+        const p2 = pts[i + 1];
+        const p3 = pts[i + 2] || p2;
+        const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+        const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+        d += ` C${c1[0]} ${c1[1]}, ${c2[0]} ${c2[1]}, ${p2[0]} ${p2[1]}`;
+      }
+      curve.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      line.setAttribute('d', d);
+      area.setAttribute('d', `${d} L${w} ${h} L${pts[0][0]} ${h} Z`);
+      line.style.setProperty('--len', Math.ceil(line.getTotalLength()));
+    };
+    drawCurve();
+    window.addEventListener('load', drawCurve);
+    if ('ResizeObserver' in window) new ResizeObserver(drawCurve).observe(tl);
+    else window.addEventListener('resize', drawCurve);
   }
 
   /* ---------- Cards com destaque: o card sob o mouse "acende" ---------- */
