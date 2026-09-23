@@ -719,8 +719,8 @@ img.img-failed{ opacity:0 !important; }
 .video-poster img{ width:100%; height:100%; object-fit:cover; filter:brightness(.55) saturate(.8); transition:transform 1s var(--ease), filter .5s ease; }
 .video-poster:hover img{ transform:scale(1.04); filter:brightness(.7); }
 .video-play{ position:absolute; left:50%; top:50%; width:84px; height:84px; margin:-42px 0 0 -42px; display:grid; place-items:center; border-radius:50%; background:var(--grad); color:#06222F; box-shadow:0 0 0 12px rgba(118,191,221,.18), 0 0 50px rgba(118,191,221,.8); animation:ping 2s infinite; }
-.testi-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 380px)); justify-content:center; gap:18px; }
-.testi-card{ display:flex; flex-direction:column; gap:18px; padding:28px; border-radius:22px; background:var(--glass); border:1px solid var(--line-2); }
+.testi-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; }
+.testi-card{ margin:0; position:relative; display:flex; flex-direction:column; gap:18px; padding:28px; border-radius:22px; background:var(--glass); border:1px solid var(--line-2); }
 .testi-result{ align-self:flex-start; font-size:.8rem; font-weight:800; letter-spacing:.06em; color:#06222F; background:var(--grad); padding:6px 12px; border-radius:999px; }
 .testi-text{ font-size:1.02rem; color:var(--white); line-height:1.6; }
 .testi-text::before{ content:'“'; display:block; font-size:3rem; line-height:.6; color:var(--bright); font-weight:900; }
@@ -729,6 +729,8 @@ img.img-failed{ opacity:0 !important; }
 .testi-avatar{ display:grid; place-items:center; font-weight:800; color:#06222F; background:var(--grad); }
 .testi-who strong{ display:block; font-size:.98rem; }
 .testi-who small{ display:block; font-size:.82rem; color:var(--muted); }
+.demo-tag{ align-self:flex-start; margin-bottom:-6px; font-size:.7rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#FFD08A; border:1px dashed #FFD08A; padding:3px 8px; border-radius:6px; }
+.demo-note{ position:absolute; left:50%; top:calc(50% + 62px); transform:translateX(-50%); padding:8px 14px; border-radius:999px; font-size:.85rem; font-weight:700; color:#FFD08A; background:rgba(11,14,16,.85); white-space:nowrap; }
 .package-risk{ display:flex; align-items:flex-start; gap:10px; margin-top:16px; padding:12px 14px; border-radius:12px; font-size:.9rem !important; color:var(--white) !important; background:rgba(192,96,90,.12); border:1px solid rgba(192,96,90,.35); }
 .package-risk svg{ flex-shrink:0; margin-top:2px; color:#E08A83; }
 

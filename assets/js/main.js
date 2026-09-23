@@ -33,10 +33,14 @@
   });
 
   /* ---------- Vídeo do Paulo (só aparece com youtubeId) ---------- */
-  if (CONFIG.youtubeId) {
+  if (CONFIG.youtubeId || CONFIG.demo) {
     const videoSection = document.getElementById('video');
     videoSection.hidden = false;
     document.getElementById('videoPoster').addEventListener('click', (e) => {
+      if (!CONFIG.youtubeId) {
+        e.currentTarget.querySelector('.video-play').insertAdjacentHTML('afterend', '<span class="demo-note">Prévia: o vídeo do Paulo entra aqui</span>');
+        return;
+      }
       const frame = document.createElement('iframe');
       frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(CONFIG.youtubeId)}?autoplay=1&rel=0`;
       frame.title = 'Vídeo do Paulo Ávila';
@@ -54,6 +58,12 @@
     depoimentos.forEach((d) => {
       const card = document.createElement('figure');
       card.className = 'testi-card';
+      if (CONFIG.demo) {
+        const tag = document.createElement('span');
+        tag.className = 'demo-tag';
+        tag.textContent = 'Exemplo';
+        card.appendChild(tag);
+      }
       if (d.resultado) {
         const r = document.createElement('span');
         r.className = 'testi-result';
