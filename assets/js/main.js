@@ -228,7 +228,7 @@
   }
 
   /* ---------- Reveal ao rolar ---------- */
-  const revealEls = document.querySelectorAll('.reveal, .steps, .compare, .tl');
+  const revealEls = document.querySelectorAll('.reveal, .steps, .compare, .tl, .container-stack');
   if (reduceMotion || !hasIO) {
     revealEls.forEach((el) => el.classList.add('in-view'));
   } else {
