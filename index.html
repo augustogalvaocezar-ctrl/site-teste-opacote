@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paulo Ávila — Acompanhamento Estratégico em Importação</title>
-<meta name="description" content="Acompanhamento individual para empresários que desejam estruturar ou expandir uma operação própria de importação, com quem construiu uma operação que passou de R$ 1 bilhão em faturamento.">
+<title>Paulo Ávila — Mentoria Individual em Importação</title>
+<meta name="description" content="Construí uma operação de importação que passou de R$ 1 bilhão em faturamento. Agora acompanho, individualmente, empresários que querem importar com método — sem os erros que custam caro.">
 <meta name="theme-color" content="#0B0E10">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230B0E10%22/><text x=%2250%22 y=%2266%22 font-family=%22Segoe UI,Arial%22 font-weight=%22700%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22%234B8AA9%22>PA</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%230B0E10%22/><text x=%2250%22 y=%2266%22 font-family=%22Segoe UI,Arial%22 font-weight=%22800%22 font-size=%2246%22 text-anchor=%22middle%22 fill=%22%2376BFDD%22>PA</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Fallback para quem não tem Segoe UI (Mac/Android/Linux) -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<!-- Fonte do site original é Segoe UI; Noto Sans cobre Mac/Android/Linux -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://images.unsplash.com">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -19,38 +19,46 @@
 <!-- ================= SVG SPRITE ================= -->
 <svg style="display:none" aria-hidden="true">
   <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path fill="none" d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5v5.5M12 16.2v.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" d="M5 13l4 4 10-10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-chevron" viewBox="0 0 24 24"><path fill="none" d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-  <symbol id="i-ship" viewBox="0 0 24 24"><path fill="none" d="M3 15l2 5h14l2-5-9-3-9 3Zm4-3V7h10v5M12 3v4" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></symbol>
-  <symbol id="i-box" viewBox="0 0 24 24"><path fill="none" d="M3 8l9-4 9 4-9 4-9-4Zm0 0v9l9 4m0-9v9m0-9 9-4v9l-9 4" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
-  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" stroke="currentColor" stroke-width="1.8"/></symbol>
-  <symbol id="i-truck" viewBox="0 0 24 24"><path fill="none" d="M2 6h12v10H2zM14 10h4l3 3v3h-7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="6" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
-  <symbol id="i-warehouse" viewBox="0 0 24 24"><path fill="none" d="M3 20V9l9-5 9 5v11M7 20v-8h10v8M7 15h10" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
-  <symbol id="i-anchor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" d="M12 7v14M5 13a7 7 0 0 0 14 0M8 11h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-ship" viewBox="0 0 24 24"><path fill="none" d="M3 15l2 5h14l2-5-9-3-9 3Zm4-3V7h10v5M12 3v4" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path fill="none" d="M3 8l9-4 9 4-9 4-9-4Zm0 0v9l9 4m0-9v9m0-9 9-4v9l-9 4" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path fill="none" d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" stroke="currentColor" stroke-width="1.9"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path fill="none" d="M2 6h12v10H2zM14 10h4l3 3v3h-7" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="6" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="1.9"/></symbol>
+  <symbol id="i-warehouse" viewBox="0 0 24 24"><path fill="none" d="M3 20V9l9-5 9 5v11M7 20v-8h10v8M7 15h10" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+  <symbol id="i-anchor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.9"/><path fill="none" d="M12 7v14M5 13a7 7 0 0 0 14 0M8 11h8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path fill="none" d="M5 21V4m0 0h11l-2 4 2 4H5" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" d="M4 5h16v11H9l-5 4V5Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path fill="none" d="M4 20V4M4 20h16M8 16l4-5 3 3 5-7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
 </svg>
 
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="page-grid" aria-hidden="true"></div>
 
 <!-- ================= HEADER ================= -->
 <header class="site-header" id="siteHeader">
   <div class="container header-inner">
     <a href="#top" class="logo" aria-label="Paulo Ávila — início">
       <span class="logo-mark">PA</span>
-      <span class="logo-text">Paulo Ávila<small>Importação estratégica</small></span>
+      <span class="logo-text">PAULO ÁVILA<span class="logo-dot">.</span></span>
     </a>
     <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
       <a href="#decisoes">Riscos</a>
       <a href="#metodo">Método</a>
-      <a href="#historia">História</a>
-      <a href="#acompanhamento">Acompanhamento</a>
+      <a href="#trajetoria">Trajetória</a>
+      <a href="#acompanhamento">O que você recebe</a>
       <a href="#faq">Dúvidas</a>
     </nav>
     <div class="header-actions">
-      <a href="#aplicar" class="btn btn-primary btn-sm">Verificar disponibilidade</a>
+      <a href="#aplicar" class="btn btn-neon btn-sm magnetic">Quero minha vaga</a>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
         <svg width="24" height="24"><use href="#i-menu"></use></svg>
       </button>
@@ -63,115 +71,150 @@
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="hero-bg" aria-hidden="true">
-      <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=2000&q=70&auto=format&fit=crop" alt="" class="hero-bg-img" fetchpriority="high">
+      <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=2000&q=70&auto=format&fit=crop" alt="" fetchpriority="high">
     </div>
-    <div class="hero-grid-lines" aria-hidden="true"></div>
+    <div class="hero-giant" aria-hidden="true"><span data-drift="-0.25">IMPORT</span></div>
 
     <div class="container hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow load-in" style="--d:0ms">Acompanhamento estratégico</span>
-        <h1 class="load-in" style="--d:120ms">
-          Construí uma operação de importação que passou de
-          <span class="hero-big">R$ 1 bilhão</span>
-          em faturamento.
-        </h1>
-        <p class="hero-lead load-in" style="--d:240ms">Agora acompanho, individualmente, empresários que desejam estruturar ou expandir uma operação própria de importação, ajudando a tomar decisões mais seguras antes que erros caros aconteçam.</p>
-        <div class="hero-cta load-in" style="--d:360ms">
-          <a href="#aplicar" class="btn btn-primary btn-lg">
-            Verificar disponibilidade
-            <svg width="18" height="18"><use href="#i-arrow"></use></svg>
-          </a>
-          <a href="#metodo" class="btn btn-ghost btn-lg">Conhecer o método</a>
-        </div>
-        <p class="hero-note load-in" style="--d:440ms">Vagas limitadas para garantir acompanhamento estratégico individual.</p>
-      </div>
+        <span class="kicker load-in" style="--d:0ms"><span class="kicker-dot"></span>Mentoria individual · vagas limitadas</span>
 
-      <div class="hero-visual load-in" style="--d:200ms">
-        <div class="hero-portrait">
-          <div class="portrait-glow" aria-hidden="true"></div>
-          <div class="portrait-ring" aria-hidden="true"></div>
-          <img src="assets/img/paulo.png" alt="Paulo Ávila, de braços cruzados, vestindo camiseta preta" width="530" height="650">
-        </div>
-        <div class="hero-stats">
-          <div class="stat-card float-a">
-            <strong><span class="counter" data-target="11">11</span> anos</strong>
-            <span>de operação contínua</span>
+        <h1 class="load-in" style="--d:120ms">
+          <span class="w-white">Construí uma operação</span>
+          <span class="w-gray">de importação que passou de</span>
+          <span class="hero-big">R$ 1 bilhão</span>
+          <span class="w-white">em faturamento.</span>
+        </h1>
+        <p class="hero-sub load-in" style="--d:200ms">Agora eu ajudo você a <span class="w-accent">construir a sua.</span></p>
+
+        <div class="hero-proof load-in" style="--d:260ms">
+          <div class="proof-stack" aria-hidden="true">
+            <span><svg width="20" height="20"><use href="#i-ship"></use></svg></span>
+            <span><svg width="20" height="20"><use href="#i-box"></use></svg></span>
+            <span><svg width="20" height="20"><use href="#i-globe"></use></svg></span>
+            <span><svg width="20" height="20"><use href="#i-warehouse"></use></svg></span>
+            <span><svg width="20" height="20"><use href="#i-truck"></use></svg></span>
           </div>
-          <div class="stat-card float-b">
+          <div class="proof-num">
             <strong>+<span class="counter" data-target="1000" data-format="thousands">1.000</span></strong>
             <span>containers importados</span>
           </div>
-          <div class="stat-card stat-wide float-c">
-            <span class="dot" aria-hidden="true"></span>
-            Estrutura operacional própria na China
+        </div>
+
+        <div class="hero-lead load-in" style="--d:360ms">
+          <a href="#decisoes" class="round-arrow" aria-label="Ver os riscos da importação">
+            <span class="round-ring"></span>
+            <svg width="24" height="24"><use href="#i-arrow-up"></use></svg>
+          </a>
+          <p>Da negociação na China ao centro de distribuição: eu acompanho, lado a lado, cada decisão da sua operação — <strong>antes que um erro caro chegue no porto.</strong></p>
+        </div>
+
+        <div class="hero-cta load-in" style="--d:460ms">
+          <a href="#aplicar" class="btn btn-neon btn-lg magnetic">
+            Verificar disponibilidade
+            <span class="btn-ico"><svg width="18" height="18"><use href="#i-arrow"></use></svg></span>
+          </a>
+          <a href="#metodo" class="btn btn-glass btn-lg">Conhecer o método</a>
+        </div>
+      </div>
+
+      <div class="hero-visual load-in" style="--d:220ms">
+        <div class="orbit-stage" id="orbitStage">
+          <svg class="orbits" viewBox="0 0 600 700" aria-hidden="true">
+            <defs>
+              <linearGradient id="orbitGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#76BFDD" stop-opacity=".9"/>
+                <stop offset=".5" stop-color="#4B8AA9" stop-opacity=".25"/>
+                <stop offset="1" stop-color="#76BFDD" stop-opacity=".9"/>
+              </linearGradient>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <g class="orbit orbit-back">
+              <path id="orbitA" d="M 35.1 477.9 A 290 110 -24 1 1 564.9 242.1 A 290 110 -24 1 1 35.1 477.9 Z" fill="none" stroke="url(#orbitGrad)" stroke-width="1.6"/>
+              <path id="orbitB" d="M 62.2 302.8 A 250 90 18 1 1 537.8 457.3 A 250 90 18 1 1 62.2 302.8 Z" fill="none" stroke="url(#orbitGrad)" stroke-width="1.2" stroke-dasharray="4 8"/>
+            </g>
+          </svg>
+          <div class="portrait-glow" aria-hidden="true"></div>
+          <img class="portrait" src="assets/img/paulo.png" alt="Paulo Ávila, de braços cruzados, vestindo camiseta preta" width="530" height="650">
+          <svg class="orbits orbits-front" viewBox="0 0 600 700" aria-hidden="true">
+            <path d="M 35.1 477.9 A 290 110 -24 0 0 564.9 242.1" fill="none" stroke="url(#orbitGrad)" stroke-width="1.6"/>
+            <circle r="6" fill="#76BFDD" filter="url(#glow)"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#orbitA"/></animateMotion></circle>
+            <circle r="4" fill="#B9E6F7" filter="url(#glow)"><animateMotion dur="13s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#orbitB"/></animateMotion></circle>
+          </svg>
+
+          <div class="float-card fc-1 glass">
+            <span class="fc-ico"><svg width="18" height="18"><use href="#i-calendar"></use></svg></span>
+            <div><strong><span class="counter" data-target="11">11</span> anos</strong><small>de operação contínua</small></div>
+          </div>
+          <div class="float-card fc-2 glass">
+            <span class="fc-ico"><svg width="18" height="18"><use href="#i-flag"></use></svg></span>
+            <div><strong>Equipe na China</strong><small>estrutura operacional própria</small></div>
+          </div>
+          <div class="float-card fc-3 glass">
+            <span class="live-dot"></span>
+            <div><strong><span class="counter" data-target="15600" data-format="thousands">15.600</span> m²</strong><small>nova expansão em 2026</small></div>
           </div>
         </div>
       </div>
     </div>
-
-    <a href="#decisoes" class="scroll-hint" aria-label="Rolar para a próxima seção"><span></span></a>
   </section>
 
   <!-- ================= MARQUEE ================= -->
   <section class="marquee" aria-label="Etapas da importação">
     <div class="marquee-track">
-      <span><svg width="22" height="22"><use href="#i-globe"></use></svg>Fornecedores na origem</span>
-      <span><svg width="22" height="22"><use href="#i-ship"></use></svg>Frete marítimo</span>
-      <span><svg width="22" height="22"><use href="#i-box"></use></svg>Containers</span>
-      <span><svg width="22" height="22"><use href="#i-anchor"></use></svg>Desembaraço aduaneiro</span>
-      <span><svg width="22" height="22"><use href="#i-warehouse"></use></svg>Centro de distribuição</span>
-      <span><svg width="22" height="22"><use href="#i-truck"></use></svg>Logística nacional</span>
-      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-globe"></use></svg>Fornecedores na origem</span>
-      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-ship"></use></svg>Frete marítimo</span>
-      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-box"></use></svg>Containers</span>
-      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-anchor"></use></svg>Desembaraço aduaneiro</span>
-      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-warehouse"></use></svg>Centro de distribuição</span>
-      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-truck"></use></svg>Logística nacional</span>
+      <span><svg width="22" height="22"><use href="#i-globe"></use></svg>Fornecedor validado</span><i>✦</i>
+      <span><svg width="22" height="22"><use href="#i-target"></use></svg>Produto com demanda</span><i>✦</i>
+      <span><svg width="22" height="22"><use href="#i-ship"></use></svg>Frete marítimo</span><i>✦</i>
+      <span><svg width="22" height="22"><use href="#i-anchor"></use></svg>NCM &amp; tributação</span><i>✦</i>
+      <span><svg width="22" height="22"><use href="#i-warehouse"></use></svg>Centro de distribuição</span><i>✦</i>
+      <span><svg width="22" height="22"><use href="#i-chart"></use></svg>Margem previsível</span><i>✦</i>
+      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-globe"></use></svg>Fornecedor validado</span><i aria-hidden="true">✦</i>
+      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-target"></use></svg>Produto com demanda</span><i aria-hidden="true">✦</i>
+      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-ship"></use></svg>Frete marítimo</span><i aria-hidden="true">✦</i>
+      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-anchor"></use></svg>NCM &amp; tributação</span><i aria-hidden="true">✦</i>
+      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-warehouse"></use></svg>Centro de distribuição</span><i aria-hidden="true">✦</i>
+      <span aria-hidden="true"><svg width="22" height="22"><use href="#i-chart"></use></svg>Margem previsível</span><i aria-hidden="true">✦</i>
     </div>
   </section>
 
-  <!-- ================= DECISÕES / RISCOS ================= -->
-  <section class="section section-dark" id="decisoes">
-    <div class="section-photo" aria-hidden="true">
-      <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1800&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.15">
-    </div>
+  <!-- ================= RISCOS ================= -->
+  <section class="section" id="decisoes">
     <div class="container">
-      <div class="section-head center reveal">
-        <span class="eyebrow eyebrow-center">Onde a importação realmente é decidida</span>
-        <h2>Uma decisão errada.<br><span class="accent">Pode comprometer toda uma operação.</span></h2>
-        <p>É nas decisões iniciais que o lucro, os riscos e o futuro da operação são definidos.</p>
+      <div class="split-head reveal">
+        <h2><span class="w-white">O prejuízo não chega</span> <span class="w-gray">no porto.</span><br><span class="w-accent">Ele nasce na primeira decisão.</span></h2>
+        <p>Produto, fornecedor, NCM, certificação, frete. É nas decisões iniciais que o lucro, o risco e o futuro da operação são definidos — e é exatamente aí que a maioria erra.</p>
       </div>
 
-      <div class="risk-grid">
-        <article class="risk-card reveal" style="--d:0ms">
-          <span class="risk-num">01</span>
-          <svg class="risk-icon" width="26" height="26"><use href="#i-alert"></use></svg>
+      <div class="hl-grid" data-hl-group>
+        <article class="hl-card glow-card tilt reveal" style="--d:0ms">
+          <span class="hl-num">01.</span>
           <h3>Produto sem demanda</h3>
-          <p>Importar barato não adianta, quando não existe mercado para vender.</p>
+          <p>Importar barato não adianta quando não existe mercado para vender. Vira capital parado no estoque.</p>
+          <span class="hl-more">Risco de estoque parado <svg width="16" height="16"><use href="#i-arrow"></use></svg></span>
         </article>
-        <article class="risk-card reveal" style="--d:80ms">
-          <span class="risk-num">02</span>
-          <svg class="risk-icon" width="26" height="26"><use href="#i-alert"></use></svg>
+        <article class="hl-card glow-card tilt is-hl reveal" style="--d:90ms">
+          <span class="hl-num">02.</span>
           <h3>Fornecedor sem validação</h3>
-          <p>O menor preço pode esconder problemas de qualidade, prazo e negociação.</p>
+          <p>O menor preço pode esconder problemas de qualidade, prazo e negociação que só aparecem com a carga no mar.</p>
+          <span class="hl-more">Risco de qualidade e prazo <svg width="16" height="16"><use href="#i-arrow"></use></svg></span>
         </article>
-        <article class="risk-card reveal" style="--d:160ms">
-          <span class="risk-num">03</span>
-          <svg class="risk-icon" width="26" height="26"><use href="#i-alert"></use></svg>
+        <article class="hl-card glow-card tilt reveal" style="--d:180ms">
+          <span class="hl-num">03.</span>
           <h3>Classificação fiscal incorreta</h3>
-          <p>Um único erro pode comprometer toda a margem da operação.</p>
+          <p>Um único erro de NCM pode comprometer toda a margem da operação — ou travar a mercadoria na alfândega.</p>
+          <span class="hl-more">Risco tributário <svg width="16" height="16"><use href="#i-arrow"></use></svg></span>
         </article>
-        <article class="risk-card reveal" style="--d:240ms">
-          <span class="risk-num">04</span>
-          <svg class="risk-icon" width="26" height="26"><use href="#i-alert"></use></svg>
+        <article class="hl-card glow-card tilt reveal" style="--d:270ms">
+          <span class="hl-num">04.</span>
           <h3>Certificações ignoradas</h3>
-          <p>Produtos sem conformidade podem gerar atrasos, multas ou impedir a comercialização.</p>
+          <p>Produto sem conformidade gera atraso, multa ou simplesmente não pode ser vendido no Brasil.</p>
+          <span class="hl-more">Risco regulatório <svg width="16" height="16"><use href="#i-arrow"></use></svg></span>
         </article>
-        <article class="risk-card reveal" style="--d:320ms">
-          <span class="risk-num">05</span>
-          <svg class="risk-icon" width="26" height="26"><use href="#i-alert"></use></svg>
-          <h3>Planejamento logístico inadequado</h3>
-          <p>Custos inesperados, atrasos e capital parado antes mesmo da venda.</p>
+        <article class="hl-card glow-card tilt reveal" style="--d:360ms">
+          <span class="hl-num">05.</span>
+          <h3>Logística mal planejada</h3>
+          <p>Custos inesperados, atrasos e dinheiro travado antes mesmo da primeira venda acontecer.</p>
+          <span class="hl-more">Risco de custo oculto <svg width="16" height="16"><use href="#i-arrow"></use></svg></span>
         </article>
       </div>
     </div>
@@ -183,341 +226,323 @@
       <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?w=2000&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.25">
     </div>
     <div class="container impact-inner reveal">
-      <h2>O problema nunca foi importar.<br>O problema sempre foi tomar <span class="underline-draw">decisões sem método.</span></h2>
-      <a href="#metodo" class="btn btn-light">
-        Conhecer o acompanhamento estratégico
-        <svg width="16" height="16"><use href="#i-arrow"></use></svg>
+      <p class="impact-pre">O problema nunca foi importar.</p>
+      <h2>O problema sempre foi <span class="impact-hl">decidir sem método.</span></h2>
+      <a href="#metodo" class="btn btn-neon btn-lg magnetic">
+        Ver como funciona o método
+        <span class="btn-ico"><svg width="18" height="18"><use href="#i-arrow"></use></svg></span>
       </a>
-      <p class="impact-sub">É exatamente nessas decisões que o acompanhamento estratégico faz diferença.</p>
     </div>
   </section>
 
   <!-- ================= MÉTODO ================= -->
-  <section class="section section-light" id="metodo">
+  <section class="section" id="metodo">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow eyebrow-dark">Como será o seu acompanhamento</span>
-        <h2 class="h2-light">Cada empresa enfrenta desafios diferentes.</h2>
-        <h2 class="h2-navy">Por isso, o acompanhamento é construído em torno da realidade da sua operação.</h2>
-        <p>Não existe uma fórmula pronta. Cada encontro é direcionado para a realidade da empresa, ajudando o empresário a tomar decisões mais seguras antes de investir e durante toda a operação.</p>
+      <div class="split-head reveal">
+        <h2><span class="w-white">Sem fórmula pronta.</span><br><span class="w-gray">Um método construído</span> <span class="w-accent">em torno da sua operação.</span></h2>
+        <p>Cada empresa tem um momento, um capital e um risco diferente. Por isso cada encontro é direcionado à realidade da sua empresa — antes de investir e durante toda a operação.</p>
       </div>
 
       <ol class="steps" id="steps">
-        <li class="step reveal" style="--d:0ms">
+        <li class="step glow-card reveal" style="--d:0ms">
           <span class="step-num">01</span>
+          <span class="step-ico"><svg width="22" height="22"><use href="#i-target"></use></svg></span>
           <h3>Diagnóstico</h3>
-          <p>Entendemos o momento da empresa e identificamos riscos, oportunidades e prioridades.</p>
+          <p>Raio-x do momento da empresa: riscos, oportunidades e prioridades.</p>
         </li>
-        <li class="step reveal" style="--d:100ms">
+        <li class="step glow-card reveal" style="--d:100ms">
           <span class="step-num">02</span>
+          <span class="step-ico"><svg width="22" height="22"><use href="#i-flag"></use></svg></span>
           <h3>Estratégia</h3>
-          <p>Definimos as decisões mais importantes antes do investimento.</p>
+          <p>As decisões mais importantes definidas antes de qualquer investimento.</p>
         </li>
-        <li class="step reveal" style="--d:200ms">
+        <li class="step glow-card reveal" style="--d:200ms">
+          <span class="step-ico"><svg width="22" height="22"><use href="#i-calendar"></use></svg></span>
           <span class="step-num">03</span>
           <h3>Planejamento</h3>
-          <p>Organizamos cada etapa para reduzir riscos e aumentar previsibilidade.</p>
+          <p>Cada etapa organizada para reduzir riscos e ganhar previsibilidade.</p>
         </li>
-        <li class="step reveal" style="--d:300ms">
+        <li class="step glow-card reveal" style="--d:300ms">
           <span class="step-num">04</span>
-          <h3>Acompanha&shy;mento</h3>
-          <p>Cada decisão relevante é discutida individualmente durante a operação.</p>
+          <span class="step-ico"><svg width="22" height="22"><use href="#i-chat"></use></svg></span>
+          <h3>Acompanhamento</h3>
+          <p>Toda decisão relevante discutida individualmente, com a operação rodando.</p>
         </li>
-        <li class="step reveal" style="--d:400ms">
+        <li class="step glow-card reveal" style="--d:400ms">
           <span class="step-num">05</span>
+          <span class="step-ico"><svg width="22" height="22"><use href="#i-chart"></use></svg></span>
           <h3>Escala</h3>
-          <p>Após os primeiros resultados, planejamos os próximos passos do crescimento.</p>
+          <p>Com os primeiros resultados, planejamos o próximo ciclo de crescimento.</p>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ================= EXPERIÊNCIA ================= -->
-  <section class="section section-gray" id="experiencia">
+  <!-- ================= TRAJETÓRIA (gráfico) ================= -->
+  <section class="section trajectory" id="trajetoria">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow eyebrow-dark">A experiência por trás das decisões</span>
-        <h2 class="h2-xl">Minha experiência não foi construída em uma sala de aula.<br><span class="accent">Foi construída na operação.</span></h2>
-      </div>
-
-      <div class="exp-grid">
-        <figure class="exp-media reveal">
-          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=70&auto=format&fit=crop" alt="Corredor de galpão logístico com porta-paletes carregados" loading="lazy">
-          <figcaption><svg width="18" height="18"><use href="#i-warehouse"></use></svg> Centro de distribuição próprio</figcaption>
-        </figure>
-        <div class="exp-copy reveal" style="--d:120ms">
-          <p>Durante mais de uma década participei de todas as etapas da importação.</p>
-          <ul class="exp-list">
-            <li>Da negociação com fabricantes ao desenvolvimento de produtos.</li>
-            <li>Da estruturação logística ao crescimento de marcas próprias.</li>
-          </ul>
-          <p>Foi assim que construí uma operação que ultrapassou <strong>R$ 1 bilhão em faturamento.</strong></p>
-          <a href="#aplicar" class="btn btn-primary">
-            Verificar disponibilidade
-            <svg width="16" height="16"><use href="#i-arrow"></use></svg>
-          </a>
+      <div class="traj-head reveal">
+        <div>
+          <span class="kicker"><span class="kicker-dot"></span>A experiência por trás das decisões</span>
+          <h2><span class="w-gray">Minha experiência não foi construída</span> <span class="w-white">em sala de aula.</span> <span class="w-accent">Foi construída na operação.</span></h2>
+        </div>
+        <div class="traj-copy">
+          <div class="stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <p>Por mais de uma década eu participei de <strong>todas as etapas da importação</strong>: da negociação com fabricantes ao desenvolvimento de produto, da estruturação logística ao crescimento de marcas próprias.</p>
+          <p>Foi assim que construí uma operação que <strong>ultrapassou R$ 1 bilhão em faturamento</strong> — e é esse caminho, com os atalhos e sem os tropeços, que eu compartilho com você.</p>
         </div>
       </div>
 
-      <div class="exp-stats reveal">
-        <div><strong>+<span class="counter" data-target="1000" data-format="thousands">1.000</span></strong><span>containers importados</span></div>
-        <div><strong>Equipe própria</strong><span>na China</span></div>
-        <div><strong>Centro de distribuição</strong><span>próprio</span></div>
+      <div class="traj-chart" id="trajChart">
+        <svg class="traj-svg" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#4B8AA9" stop-opacity=".4"/>
+              <stop offset="1" stop-color="#4B8AA9" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#4B8AA9"/>
+              <stop offset="1" stop-color="#9FDDF5"/>
+            </linearGradient>
+          </defs>
+          <path class="traj-area" d="M0 420 C10 415, 15 406, 60 391 C105 376, 200 352, 270 331 C340 310, 410 292, 480 267 C550 242, 617 218, 690 184 C763 150, 868 88, 920 64 C972 40, 987 44, 1000 40 L1000 460 L0 460 Z" fill="url(#areaGrad)"/>
+          <path class="traj-line" d="M0 420 C10 415, 15 406, 60 391 C105 376, 200 352, 270 331 C340 310, 410 292, 480 267 C550 242, 617 218, 690 184 C763 150, 868 88, 920 64 C972 40, 987 44, 1000 40" fill="none" stroke="url(#lineGrad)" stroke-width="3.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <span class="traj-node" style="--x:6.0%;--y:85.0%;--n:0"><svg width="16" height="16"><use href="#i-flag"></use></svg></span>
+        <span class="traj-node" style="--x:27.0%;--y:72.0%;--n:1"><svg width="16" height="16"><use href="#i-globe"></use></svg></span>
+        <span class="traj-node" style="--x:48.0%;--y:58.0%;--n:2"><svg width="16" height="16"><use href="#i-warehouse"></use></svg></span>
+        <span class="traj-node" style="--x:69.0%;--y:40.0%;--n:3"><svg width="16" height="16"><use href="#i-box"></use></svg></span>
+        <span class="traj-node" style="--x:92.0%;--y:13.9%;--n:4"><svg width="16" height="16"><use href="#i-chart"></use></svg></span>
+
+        <div class="traj-card glass tc-1"><span class="tc-year">2014</span><strong>Fundação</strong><small>Primeiras importações direto da origem.</small></div>
+        <div class="traj-card glass tc-2"><span class="tc-year">2016</span><strong>Importação própria</strong><small>Fim da dependência de intermediários.</small></div>
+        <div class="traj-card glass tc-3"><span class="tc-year">2019</span><strong>Expansão logística</strong><small>Estrutura pronta para crescer em escala.</small></div>
+        <div class="traj-card glass tc-4"><span class="tc-year">2025</span><strong>Centro de distribuição próprio</strong><small>Controle da operação, ponta a ponta.</small></div>
+        <div class="traj-card glass tc-5 tc-hl"><span class="tc-year">2026</span><strong><span class="counter" data-target="15600" data-format="thousands">15.600</span> m²</strong><small>Nova expansão para o próximo ciclo.</small></div>
+      </div>
+
+      <div class="traj-cta reveal">
+        <a href="#aplicar" class="btn btn-neon btn-lg magnetic">
+          Quero esse acompanhamento
+          <span class="btn-ico"><svg width="18" height="18"><use href="#i-arrow"></use></svg></span>
+        </a>
+        <a href="#faq" class="link-under">Tenho uma dúvida</a>
       </div>
     </div>
   </section>
 
-  <!-- ================= DA ORIGEM AO DESTINO (galeria) ================= -->
-  <section class="section section-dark journey">
+  <!-- ================= GALERIA ================= -->
+  <section class="section journey">
     <div class="container">
-      <div class="section-head center reveal">
-        <span class="eyebrow eyebrow-center">Da origem ao destino</span>
-        <h2>Cada etapa da cadeia passa por uma <span class="accent">decisão estratégica.</span></h2>
+      <div class="split-head reveal">
+        <h2><span class="w-white">Da origem ao destino,</span><br><span class="w-gray">cada etapa é uma</span> <span class="w-accent">decisão estratégica.</span></h2>
+        <p>É nessa cadeia que a margem se ganha ou se perde. No acompanhamento, cada elo é pensado antes de o dinheiro sair do caixa.</p>
       </div>
     </div>
     <div class="journey-grid">
-      <figure class="j-item j-tall reveal">
+      <figure class="j-item j-tall glow-card reveal">
         <img src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=1200&q=70&auto=format&fit=crop" alt="Guindastes de porto carregando containers" loading="lazy">
-        <figcaption><span>01</span>Origem<small>Fornecedor validado e negociação na fonte</small></figcaption>
+        <figcaption><span>01 · Origem</span>Fornecedor validado<small>Negociação direta na fonte, com quem conhece o fabricante.</small></figcaption>
       </figure>
-      <figure class="j-item j-wide reveal" style="--d:80ms">
+      <figure class="j-item j-wide glow-card reveal" style="--d:80ms">
         <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1400&q=70&auto=format&fit=crop" alt="Navio porta-containers em alto mar" loading="lazy">
-        <figcaption><span>02</span>Frete marítimo<small>Planejamento de embarque e custo real do container</small></figcaption>
+        <figcaption><span>02 · Mar</span>Frete marítimo<small>Custo real do container calculado antes do embarque.</small></figcaption>
       </figure>
-      <figure class="j-item reveal" style="--d:160ms">
-        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=70&auto=format&fit=crop" alt="Operador conferindo caixas em galpão" loading="lazy">
-        <figcaption><span>03</span>Armazenagem<small>Estoque pronto para girar</small></figcaption>
+      <figure class="j-item glow-card reveal" style="--d:160ms">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=70&auto=format&fit=crop" alt="Corredor de galpão com porta-paletes carregados" loading="lazy">
+        <figcaption><span>03 · Galpão</span>Armazenagem<small>Estoque pensado para girar, não para parar.</small></figcaption>
       </figure>
-      <figure class="j-item reveal" style="--d:240ms">
+      <figure class="j-item glow-card reveal" style="--d:240ms">
         <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=900&q=70&auto=format&fit=crop" alt="Caminhão de carga em rodovia" loading="lazy">
-        <figcaption><span>04</span>Distribuição<small>Produto chegando ao mercado</small></figcaption>
+        <figcaption><span>04 · Estrada</span>Distribuição<small>Produto certo chegando ao mercado no tempo certo.</small></figcaption>
       </figure>
-    </div>
-  </section>
-
-  <!-- ================= HISTÓRIA / TIMELINE ================= -->
-  <section class="section section-dark" id="historia">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">A história construída na prática</span>
-        <h2>Uma operação não cresce por acaso.</h2>
-        <p>Ao longo dos anos, cada expansão aconteceu para resolver um novo desafio da operação, o resultado foi a construção de uma estrutura capaz de controlar todas as etapas da importação.</p>
-      </div>
-
-      <ol class="timeline" id="timeline">
-        <li class="tl-item reveal" style="--d:0ms">
-          <span class="tl-year">2014</span>
-          <div class="tl-img"><img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=700&q=70&auto=format&fit=crop" alt="Caixas empilhadas no início da operação" loading="lazy"></div>
-          <h3>Fundação</h3>
-          <p>As primeiras importações direto da origem.</p>
-        </li>
-        <li class="tl-item reveal" style="--d:100ms">
-          <span class="tl-year">2016</span>
-          <div class="tl-img"><img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=700&q=70&auto=format&fit=crop" alt="Containers empilhados no porto" loading="lazy"></div>
-          <h3>Importação própria</h3>
-          <p>Fim da dependência de intermediários.</p>
-        </li>
-        <li class="tl-item reveal" style="--d:200ms">
-          <span class="tl-year">2019</span>
-          <div class="tl-img"><img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=700&q=70&auto=format&fit=crop" alt="Galpão de expansão logística" loading="lazy"></div>
-          <h3>Expansão logística</h3>
-          <p>Estrutura pronta para crescer em escala.</p>
-        </li>
-        <li class="tl-item reveal" style="--d:300ms">
-          <span class="tl-year">2025</span>
-          <div class="tl-img"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=700&q=70&auto=format&fit=crop" alt="Centro de distribuição com porta-paletes" loading="lazy"></div>
-          <h3>Centro de distribuição próprio</h3>
-          <p>Controle total da operação, ponta a ponta.</p>
-        </li>
-        <li class="tl-item reveal" style="--d:400ms">
-          <span class="tl-year">2026</span>
-          <div class="tl-img"><img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=700&q=70&auto=format&fit=crop" alt="Nova expansão da operação" loading="lazy"></div>
-          <h3>Nova expansão</h3>
-          <p><span class="counter" data-target="15600" data-format="thousands">15.600</span> m² para o próximo ciclo.</p>
-        </li>
-      </ol>
     </div>
   </section>
 
   <!-- ================= COMPARATIVO ================= -->
-  <section class="section section-dark compare-section">
+  <section class="section compare-section">
     <div class="container">
-      <div class="section-head center reveal">
-        <h2 class="h2-xl">Cada desafio enfrentado se transformou em um atalho para quem vem depois.</h2>
+      <div class="center-head reveal">
+        <h2><span class="w-white">Cada desafio que eu enfrentei</span> <span class="w-gray">virou um</span> <span class="w-accent">atalho para você.</span></h2>
         <p>Mais de uma década de experiência, hoje compartilhada com quem quer construir sem repetir os mesmos erros.</p>
       </div>
 
       <div class="compare reveal">
-        <div class="compare-col compare-alone">
+        <div class="compare-col compare-alone glass">
           <span class="compare-label">Continuar sozinho</span>
           <ul>
-            <li><svg width="16" height="16"><use href="#i-x"></use></svg>Tentativa e erro</li>
-            <li><svg width="16" height="16"><use href="#i-x"></use></svg>Fornecedor sem validação</li>
-            <li><svg width="16" height="16"><use href="#i-x"></use></svg>Custos descobertos tarde</li>
-            <li><svg width="16" height="16"><use href="#i-x"></use></svg>Correção em alto mar</li>
+            <li><svg width="16" height="16"><use href="#i-x"></use></svg>Tentativa e erro com dinheiro real</li>
+            <li><svg width="16" height="16"><use href="#i-x"></use></svg>Fornecedor escolhido pelo preço</li>
+            <li><svg width="16" height="16"><use href="#i-x"></use></svg>Custos descobertos tarde demais</li>
+            <li><svg width="16" height="16"><use href="#i-x"></use></svg>Correção com a carga em alto mar</li>
           </ul>
         </div>
-        <div class="compare-divider" aria-hidden="true"><span><svg width="20" height="20"><use href="#i-arrow"></use></svg></span></div>
+        <div class="compare-vs" aria-hidden="true">VS</div>
         <div class="compare-col compare-method">
           <span class="compare-label">Construir com método</span>
           <ul>
-            <li><svg width="18" height="18"><use href="#i-check"></use></svg>Decisão validada</li>
-            <li><svg width="18" height="18"><use href="#i-check"></use></svg>Planejamento tributário</li>
-            <li><svg width="18" height="18"><use href="#i-check"></use></svg>Fornecedor estratégico</li>
-            <li><svg width="18" height="18"><use href="#i-check"></use></svg>Operação pronta pra crescer</li>
+            <li><svg width="18" height="18"><use href="#i-check"></use></svg>Decisão validada antes do investimento</li>
+            <li><svg width="18" height="18"><use href="#i-check"></use></svg>Planejamento tributário desde o início</li>
+            <li><svg width="18" height="18"><use href="#i-check"></use></svg>Fornecedor estratégico, não só barato</li>
+            <li><svg width="18" height="18"><use href="#i-check"></use></svg>Operação pronta para crescer</li>
           </ul>
         </div>
       </div>
 
       <div class="compare-cta reveal">
-        <p>A importação começa muito antes do primeiro container.<br>Ela começa nas decisões que você toma hoje.</p>
-        <a href="#acompanhamento" class="btn btn-outline">
-          Conhecer o método
-          <svg width="16" height="16"><use href="#i-arrow"></use></svg>
-        </a>
+        <p><span class="w-white">A importação começa muito antes do primeiro container.</span><br><span class="w-accent">Ela começa nas decisões que você toma hoje.</span></p>
       </div>
     </div>
   </section>
 
-  <!-- ================= O QUE VOCÊ TERÁ ================= -->
-  <section class="section section-dark offer" id="acompanhamento">
-    <div class="offer-bg" aria-hidden="true">
-      <img src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=1800&q=55&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.12">
-    </div>
+  <!-- ================= O QUE VOCÊ RECEBE ================= -->
+  <section class="section offer" id="acompanhamento">
     <div class="container">
-      <div class="section-head reveal">
-        <p class="offer-kicker">As decisões mais importantes da sua operação não precisam ser tomadas sozinho.</p>
-        <h2>Você terá acompanhamento estratégico durante toda a jornada da importação.</h2>
+      <div class="split-head reveal">
+        <h2><span class="w-gray">As decisões mais importantes da sua operação</span> <span class="w-white">não precisam ser tomadas</span> <span class="w-accent">sozinho.</span></h2>
+        <p>Você terá acompanhamento estratégico durante toda a jornada da importação — do primeiro diagnóstico à análise dos resultados.</p>
       </div>
 
-      <div class="offer-list">
-        <div class="offer-row reveal">
-          <div class="offer-title"><strong><span class="counter" data-target="3" data-pad="2">03</span> meses</strong><span>de acompanhamento estratégico</span></div>
-          <p>Durante todo o período, cada encontro será dedicado às decisões mais importantes da sua operação.</p>
+      <div class="offer-grid" data-hl-group>
+        <div class="offer-card hl-card glow-card tilt reveal" style="--d:0ms">
+          <span class="offer-ico"><svg width="22" height="22"><use href="#i-calendar"></use></svg></span>
+          <strong class="offer-big"><span class="counter" data-target="3" data-pad="2">03</span> meses</strong>
+          <span class="offer-sub">de acompanhamento estratégico</span>
+          <p>Cada encontro dedicado às decisões mais importantes da sua operação.</p>
         </div>
-        <div class="offer-row reveal" style="--d:80ms">
-          <div class="offer-title"><strong><span class="counter" data-target="2" data-pad="2">02</span> reuniões</strong><span>individuais por mês</span></div>
-          <p>Agenda exclusiva para discutir prioridades, validar decisões e definir os próximos passos.</p>
+        <div class="offer-card hl-card glow-card tilt is-hl reveal" style="--d:90ms">
+          <span class="offer-ico"><svg width="22" height="22"><use href="#i-target"></use></svg></span>
+          <strong class="offer-big"><span class="counter" data-target="2" data-pad="2">02</span> reuniões</strong>
+          <span class="offer-sub">individuais por mês</span>
+          <p>Agenda exclusiva para priorizar, validar decisões e definir os próximos passos.</p>
         </div>
-        <div class="offer-row reveal" style="--d:160ms">
-          <div class="offer-title"><strong>Suporte direto</strong><span>pelo WhatsApp</span></div>
-          <p>Para decisões que não podem esperar até a próxima reunião.</p>
+        <div class="offer-card hl-card glow-card tilt reveal" style="--d:180ms">
+          <span class="offer-ico"><svg width="22" height="22"><use href="#i-chat"></use></svg></span>
+          <strong class="offer-big">Suporte direto</strong>
+          <span class="offer-sub">pelo WhatsApp</span>
+          <p>Para as decisões que não podem esperar até a próxima reunião.</p>
         </div>
-        <div class="offer-row reveal" style="--d:240ms">
-          <div class="offer-title"><strong>Análise</strong><span>após a primeira importação</span></div>
-          <p>Avaliação dos resultados da operação, definição dos próximos passos e planejamento da evolução do negócio.</p>
+        <div class="offer-card hl-card glow-card tilt reveal" style="--d:270ms">
+          <span class="offer-ico"><svg width="22" height="22"><use href="#i-chart"></use></svg></span>
+          <strong class="offer-big">Análise</strong>
+          <span class="offer-sub">após a primeira importação</span>
+          <p>Avaliação dos resultados, próximos passos e plano de evolução do negócio.</p>
         </div>
       </div>
 
       <div class="center-cta reveal">
-        <a href="#aplicar" class="btn btn-light btn-lg">
+        <a href="#aplicar" class="btn btn-neon btn-lg magnetic">
           Verificar disponibilidade
-          <svg width="18" height="18"><use href="#i-arrow"></use></svg>
+          <span class="btn-ico"><svg width="18" height="18"><use href="#i-arrow"></use></svg></span>
         </a>
-        <p>Cada ciclo atende poucas empresas para garantir dedicação individual e acompanhamento próximo em cada operação.</p>
+        <p>Cada ciclo atende poucas empresas para garantir dedicação individual.</p>
       </div>
     </div>
   </section>
 
-  <!-- ================= PARA QUEM É ================= -->
-  <section class="section section-gradient" id="para-quem">
+  <!-- ================= PARA QUEM É (checklist interativo) ================= -->
+  <section class="section fit" id="para-quem">
     <div class="container fit-grid">
       <div class="fit-copy reveal">
-        <span class="eyebrow eyebrow-bright">Para quem é esta mentoria</span>
-        <h2>Essa mentoria realmente faz sentido para você?</h2>
-        <p>A maioria dos empresários não perde dinheiro ao importar. Perde por tomar decisões sem experiência, processo ou orientação.</p>
-        <p>A mentoria ajuda a construir uma operação sólida desde o início, reduzindo riscos e prejuízos.</p>
-        <a href="#metodo" class="btn btn-outline">
-          Conhecer o método
-          <svg width="16" height="16"><use href="#i-arrow"></use></svg>
-        </a>
+        <span class="kicker"><span class="kicker-dot"></span>Para quem é esta mentoria</span>
+        <h2><span class="w-white">Essa mentoria</span> <span class="w-accent">faz sentido</span> <span class="w-gray">para você?</span></h2>
+        <p>A maioria dos empresários não perde dinheiro por importar. Perde por decidir sem experiência, sem processo e sem orientação.</p>
+        <p class="fit-hint">Marque o que tem a ver com o seu momento:</p>
+        <div class="fit-meter" aria-live="polite">
+          <div class="fit-bar"><span id="fitFill"></span></div>
+          <strong id="fitCount">0/6</strong>
+        </div>
+        <p class="fit-msg" id="fitMsg">Cada item marcado aproxima você do perfil ideal.</p>
       </div>
-      <ul class="fit-list">
-        <li class="reveal" style="--d:0ms"><svg width="20" height="20"><use href="#i-check"></use></svg>Negócio validado, buscando comprar direto da origem</li>
-        <li class="reveal" style="--d:70ms"><svg width="20" height="20"><use href="#i-check"></use></svg>Capital para investir, não para aprender errando</li>
-        <li class="reveal" style="--d:140ms"><svg width="20" height="20"><use href="#i-check"></use></svg>Busca mais margem sem mais risco</li>
-        <li class="reveal" style="--d:210ms"><svg width="20" height="20"><use href="#i-check"></use></svg>Busca previsibilidade antes da primeira carga</li>
-        <li class="reveal" style="--d:280ms"><svg width="20" height="20"><use href="#i-check"></use></svg>Valoriza orientação de quem já percorreu o caminho</li>
-        <li class="reveal" style="--d:350ms"><svg width="20" height="20"><use href="#i-check"></use></svg>Quer construir uma operação, não uma importação única</li>
+      <ul class="fit-list" id="fitList">
+        <li class="reveal" style="--d:0ms"><button type="button" aria-pressed="false"><span class="fit-check"><svg width="16" height="16"><use href="#i-check"></use></svg></span>Tenho um negócio validado e quero comprar direto da origem</button></li>
+        <li class="reveal" style="--d:60ms"><button type="button" aria-pressed="false"><span class="fit-check"><svg width="16" height="16"><use href="#i-check"></use></svg></span>Tenho capital para investir, não para aprender errando</button></li>
+        <li class="reveal" style="--d:120ms"><button type="button" aria-pressed="false"><span class="fit-check"><svg width="16" height="16"><use href="#i-check"></use></svg></span>Quero mais margem sem assumir mais risco</button></li>
+        <li class="reveal" style="--d:180ms"><button type="button" aria-pressed="false"><span class="fit-check"><svg width="16" height="16"><use href="#i-check"></use></svg></span>Quero previsibilidade antes da primeira carga</button></li>
+        <li class="reveal" style="--d:240ms"><button type="button" aria-pressed="false"><span class="fit-check"><svg width="16" height="16"><use href="#i-check"></use></svg></span>Valorizo a orientação de quem já percorreu o caminho</button></li>
+        <li class="reveal" style="--d:300ms"><button type="button" aria-pressed="false"><span class="fit-check"><svg width="16" height="16"><use href="#i-check"></use></svg></span>Quero construir uma operação, não uma importação única</button></li>
       </ul>
     </div>
   </section>
 
   <!-- ================= FAQ ================= -->
-  <section class="section section-gradient faq-section" id="faq">
+  <section class="section faq-section" id="faq">
     <div class="container faq-wrap">
-      <div class="section-head center reveal">
-        <h2>Ainda com alguma dúvida?</h2>
+      <div class="center-head reveal">
+        <h2><span class="w-white">Ainda com</span> <span class="w-accent">alguma dúvida?</span></h2>
         <p>As perguntas mais comuns de empresários que estão avaliando participar da mentoria.</p>
       </div>
       <div class="faq-list">
         <details class="faq-item reveal">
-          <summary>O programa é uma mentoria em grupo?<svg width="18" height="18"><use href="#i-chevron"></use></svg></summary>
+          <summary>O programa é uma mentoria em grupo?<span class="faq-plus"></span></summary>
           <div class="faq-body"><p>Não. O acompanhamento é individual: as reuniões são exclusivas da sua empresa e direcionadas à realidade da sua operação.</p></div>
         </details>
         <details class="faq-item reveal" style="--d:50ms">
-          <summary>Preciso já estar importando?<svg width="18" height="18"><use href="#i-chevron"></use></svg></summary>
-          <div class="faq-body"><p>Não necessariamente. A mentoria atende empresários que desejam estruturar a primeira operação de importação ou expandir uma operação que já existe.</p></div>
+          <summary>Preciso já estar importando?<span class="faq-plus"></span></summary>
+          <div class="faq-body"><p>Não necessariamente. A mentoria atende empresários que querem estruturar a primeira operação de importação ou expandir uma operação que já existe.</p></div>
         </details>
         <details class="faq-item reveal" style="--d:100ms">
-          <summary>Vocês entregam fornecedores prontos?<svg width="18" height="18"><use href="#i-chevron"></use></svg></summary>
+          <summary>Vocês entregam fornecedores prontos?<span class="faq-plus"></span></summary>
           <div class="faq-body"><p>O foco é a tomada de decisão: você aprende a avaliar, validar e negociar com fornecedores com o apoio de quem já fez isso em escala.</p></div>
         </details>
         <details class="faq-item reveal" style="--d:150ms">
-          <summary>Como funciona o suporte entre os encontros?<svg width="18" height="18"><use href="#i-chevron"></use></svg></summary>
+          <summary>Como funciona o suporte entre os encontros?<span class="faq-plus"></span></summary>
           <div class="faq-body"><p>Pelo WhatsApp, para as decisões que não podem esperar até a próxima reunião.</p></div>
         </details>
         <details class="faq-item reveal" style="--d:200ms">
-          <summary>A mentoria aborda questões tributárias e NCM?<svg width="18" height="18"><use href="#i-chevron"></use></svg></summary>
-          <div class="faq-body"><p>Sim. Classificação fiscal e planejamento tributário fazem parte das decisões estratégicas discutidas, pois impactam diretamente a margem da operação.</p></div>
+          <summary>A mentoria aborda questões tributárias e NCM?<span class="faq-plus"></span></summary>
+          <div class="faq-body"><p>Sim. Classificação fiscal e planejamento tributário fazem parte das decisões estratégicas discutidas, porque impactam diretamente a margem da operação.</p></div>
         </details>
         <details class="faq-item reveal" style="--d:250ms">
-          <summary>Existe alguma garantia de faturamento?<svg width="18" height="18"><use href="#i-chevron"></use></svg></summary>
+          <summary>Existe alguma garantia de faturamento?<span class="faq-plus"></span></summary>
           <div class="faq-body"><p>Não. O resultado depende das decisões e da execução de cada empresa. O acompanhamento existe para que essas decisões sejam tomadas com mais segurança e menos risco.</p></div>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- ================= APLICAÇÃO / CTA FINAL ================= -->
+  <!-- ================= APLICAÇÃO ================= -->
   <section class="final" id="aplicar">
     <div class="final-bg" aria-hidden="true">
-      <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?w=2000&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.2">
+      <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=2000&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.2">
     </div>
     <div class="container final-grid">
       <div class="final-copy reveal">
-        <span class="eyebrow eyebrow-bright">Vagas limitadas</span>
-        <h2>Solicite uma conversa estratégica.</h2>
-        <p>A mentoria é destinada a empresários que desejam estruturar ou expandir uma operação própria de importação, com acompanhamento próximo e vagas limitadas.</p>
+        <span class="kicker"><span class="kicker-dot"></span>Vagas limitadas por ciclo</span>
+        <h2><span class="w-white">Seu próximo container</span> <span class="w-gray">pode ser o primeiro de uma</span> <span class="w-accent">operação de verdade.</span></h2>
+        <p>Preencha em 30 segundos. Eu analiso o momento da sua empresa e retorno pelo WhatsApp para uma conversa estratégica.</p>
         <ul class="final-points">
-          <li><svg width="18" height="18"><use href="#i-check"></use></svg>Acompanhamento 100% individual</li>
-          <li><svg width="18" height="18"><use href="#i-check"></use></svg>Poucas empresas por ciclo</li>
-          <li><svg width="18" height="18"><use href="#i-check"></use></svg>Resposta direta pelo WhatsApp</li>
+          <li><span><svg width="14" height="14"><use href="#i-check"></use></svg></span>Acompanhamento 100% individual</li>
+          <li><span><svg width="14" height="14"><use href="#i-check"></use></svg></span>Poucas empresas por ciclo</li>
+          <li><span><svg width="14" height="14"><use href="#i-check"></use></svg></span>Retorno direto pelo WhatsApp</li>
         </ul>
       </div>
 
-      <form class="apply-form reveal" id="applyForm" style="--d:120ms" novalidate>
-        <h3>Verificar disponibilidade</h3>
-        <label>Nome
-          <input type="text" name="nome" required autocomplete="name" placeholder="Seu nome completo">
+      <form class="apply-form glass glow-card reveal" id="applyForm" style="--d:120ms" novalidate>
+        <div class="form-head">
+          <h3>Verificar disponibilidade</h3>
+          <span class="form-badge"><span class="live-dot"></span>Ciclo aberto</span>
+        </div>
+        <label for="f-nome">Nome
+          <input id="f-nome" type="text" name="nome" required autocomplete="name" placeholder="Seu nome completo">
         </label>
-        <label>Empresa
-          <input type="text" name="empresa" required autocomplete="organization" placeholder="Nome da empresa">
+        <label for="f-empresa">Empresa
+          <input id="f-empresa" type="text" name="empresa" required autocomplete="organization" placeholder="Nome da empresa">
         </label>
-        <label>WhatsApp
-          <input type="tel" name="whatsapp" required autocomplete="tel" placeholder="(00) 00000-0000">
+        <label for="f-whats">WhatsApp
+          <input id="f-whats" type="tel" name="whatsapp" required autocomplete="tel" placeholder="(00) 00000-0000">
         </label>
-        <label>Momento da operação
-          <select name="momento" required>
+        <label for="f-momento">Momento da operação
+          <select id="f-momento" name="momento" required>
             <option value="">Selecione</option>
             <option>Ainda não importo</option>
             <option>Já importo e quero expandir</option>
             <option>Compro de importadores e quero ir direto à origem</option>
           </select>
         </label>
-        <button type="submit" class="btn btn-primary btn-block btn-lg">
-          Solicitar uma conversa estratégica
-          <svg width="18" height="18"><use href="#i-arrow"></use></svg>
+        <button type="submit" class="btn btn-neon btn-block btn-lg">
+          Solicitar conversa estratégica
+          <span class="btn-ico"><svg width="18" height="18"><use href="#i-arrow"></use></svg></span>
         </button>
         <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
       </form>
@@ -530,9 +555,9 @@
   <div class="container footer-inner">
     <a href="#top" class="logo">
       <span class="logo-mark">PA</span>
-      <span class="logo-text">Paulo Ávila<small>Importação estratégica</small></span>
+      <span class="logo-text">PAULO ÁVILA<span class="logo-dot">.</span></span>
     </a>
-    <p>© <span id="year"></span> Paulo Ávila. Todos os direitos reservados.</p>
+    <p>© <span id="year"></span> Paulo Ávila · Mentoria individual em importação.</p>
     <button class="to-top" id="toTop" aria-label="Voltar ao topo">
       <svg width="18" height="18" style="transform:rotate(-90deg)"><use href="#i-arrow"></use></svg>
     </button>
@@ -540,7 +565,7 @@
 </footer>
 
 <a href="#aplicar" class="sticky-cta" id="stickyCta">
-  Verificar disponibilidade
+  Quero minha vaga
   <svg width="16" height="16"><use href="#i-arrow"></use></svg>
 </a>
 

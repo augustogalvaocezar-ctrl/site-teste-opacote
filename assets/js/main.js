@@ -5,7 +5,9 @@
      Formato internacional, só dígitos (ex.: '5548999999999'). */
   const WHATSAPP_NUMBER = '';
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  const fx = !reduceMotion && finePointer;
 
   /* ---------- Imagens que falharem somem, deixando o fundo de reserva ---------- */
   document.querySelectorAll('img').forEach((img) => {
@@ -14,28 +16,31 @@
     img.addEventListener('error', fail);
   });
 
-  /* ---------- Header, barra de progresso, CTA fixo ---------- */
+  /* ---------- Scroll: header, progresso, CTA fixo, parallax ---------- */
   const header = document.getElementById('siteHeader');
   const progress = document.getElementById('scrollProgress');
   const stickyCta = document.getElementById('stickyCta');
   const applySection = document.getElementById('aplicar');
-  const parallaxEls = prefersReducedMotion ? [] : Array.from(document.querySelectorAll('[data-parallax]'));
+  const parallaxEls = reduceMotion ? [] : Array.from(document.querySelectorAll('[data-parallax]'));
+  const driftEls = reduceMotion ? [] : Array.from(document.querySelectorAll('[data-drift]'));
 
   let ticking = false;
   const onScroll = () => {
     const y = window.scrollY;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const vh = window.innerHeight;
+    const max = document.documentElement.scrollHeight - vh;
     header.classList.toggle('scrolled', y > 20);
     progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-
-    const applyTop = applySection.getBoundingClientRect().top;
-    stickyCta.classList.toggle('show', y > window.innerHeight * 0.8 && applyTop > window.innerHeight);
+    stickyCta.classList.toggle('show', y > vh * 0.8 && applySection.getBoundingClientRect().top > vh);
 
     parallaxEls.forEach((el) => {
       const rect = el.parentElement.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-      const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * parseFloat(el.dataset.parallax);
+      if (rect.bottom < 0 || rect.top > vh) return;
+      const offset = (rect.top + rect.height / 2 - vh / 2) * parseFloat(el.dataset.parallax);
       el.style.transform = `translate3d(0, ${offset}px, 0)`;
+    });
+    driftEls.forEach((el) => {
+      el.style.transform = `translate3d(${y * parseFloat(el.dataset.drift)}px, 0, 0)`;
     });
     ticking = false;
   };
@@ -44,6 +49,25 @@
   }, { passive: true });
   window.addEventListener('resize', onScroll);
   onScroll();
+
+  /* ---------- Brilho que segue o cursor ---------- */
+  const cursorGlow = document.getElementById('cursorGlow');
+  if (fx) {
+    let cx = 0, cy = 0, tx = 0, ty = 0, running = false;
+    const follow = () => {
+      cx += (tx - cx) * 0.12;
+      cy += (ty - cy) * 0.12;
+      cursorGlow.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+      if (Math.abs(tx - cx) > 0.5 || Math.abs(ty - cy) > 0.5) requestAnimationFrame(follow);
+      else running = false;
+    };
+    window.addEventListener('pointermove', (e) => {
+      tx = e.clientX; ty = e.clientY;
+      cursorGlow.classList.add('on');
+      if (!running) { running = true; requestAnimationFrame(follow); }
+    }, { passive: true });
+    document.addEventListener('pointerleave', () => cursorGlow.classList.remove('on'));
+  }
 
   /* ---------- Menu mobile ---------- */
   const navToggle = document.getElementById('navToggle');
@@ -58,9 +82,11 @@
   navToggle.addEventListener('click', () => setMenu(!mainNav.classList.contains('open')));
   mainNav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
 
+  const hasIO = 'IntersectionObserver' in window;
+
   /* ---------- Link ativo no menu ---------- */
   const navLinks = Array.from(mainNav.querySelectorAll('a'));
-  if ('IntersectionObserver' in window) {
+  if (hasIO) {
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -74,8 +100,8 @@
   }
 
   /* ---------- Reveal ao rolar ---------- */
-  const revealEls = document.querySelectorAll('.reveal, .steps, .compare, .exp-media');
-  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+  const revealEls = document.querySelectorAll('.reveal, .steps, .compare, .traj-chart');
+  if (reduceMotion || !hasIO) {
     revealEls.forEach((el) => el.classList.add('in-view'));
   } else {
     const revealObserver = new IntersectionObserver((entries) => {
@@ -97,19 +123,17 @@
   };
   const animateCounter = (el) => {
     const target = parseInt(el.dataset.target, 10);
-    if (prefersReducedMotion) { el.textContent = formatNumber(target, el); return; }
-    const duration = parseInt(el.dataset.duration || '1600', 10);
+    const duration = 1800;
     const start = performance.now();
     const tick = (now) => {
       const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
+      const eased = 1 - Math.pow(1 - p, 4);
       el.textContent = formatNumber(Math.round(target * eased), el);
       if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
   };
-  const counters = document.querySelectorAll('.counter');
-  if ('IntersectionObserver' in window) {
+  if (hasIO && !reduceMotion) {
     const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -118,11 +142,96 @@
         }
       });
     }, { threshold: 0.6 });
-    counters.forEach((el) => {
-      if (!prefersReducedMotion) el.textContent = formatNumber(0, el);
+    document.querySelectorAll('.counter').forEach((el) => {
+      el.textContent = formatNumber(0, el);
       counterObserver.observe(el);
     });
   }
+
+  /* ---------- Cards com destaque: o card sob o mouse "acende" ---------- */
+  document.querySelectorAll('[data-hl-group]').forEach((group) => {
+    const cards = Array.from(group.querySelectorAll('.hl-card'));
+    const initial = cards.find((c) => c.classList.contains('is-hl'));
+    const activate = (card) => cards.forEach((c) => c.classList.toggle('is-hl', c === card));
+    cards.forEach((card) => {
+      card.addEventListener('pointerenter', () => activate(card));
+      card.addEventListener('focusin', () => activate(card));
+      card.addEventListener('click', () => activate(card));
+    });
+    group.addEventListener('pointerleave', () => activate(initial));
+  });
+
+  /* ---------- Spotlight dentro dos cards ---------- */
+  document.querySelectorAll('.glow-card').forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      card.style.setProperty('--my', `${e.clientY - r.top}px`);
+    });
+  });
+
+  /* ---------- Tilt 3D ---------- */
+  if (fx) {
+    document.querySelectorAll('.tilt').forEach((card) => {
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(900px) rotateX(${y * -8}deg) rotateY(${x * 10}deg) translateY(-8px)`;
+      });
+      card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+    });
+  }
+
+  /* ---------- Botões magnéticos ---------- */
+  if (fx) {
+    document.querySelectorAll('.magnetic').forEach((btn) => {
+      btn.addEventListener('pointermove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = `translate(${x * 0.18}px, ${y * 0.3}px)`;
+      });
+      btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  /* ---------- Retrato + órbitas acompanham o mouse ---------- */
+  const orbitStage = document.getElementById('orbitStage');
+  if (fx && orbitStage) {
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('pointermove', (e) => {
+      const x = e.clientX / window.innerWidth - 0.5;
+      const y = e.clientY / window.innerHeight - 0.5;
+      orbitStage.style.transform = `perspective(1200px) rotateY(${x * 6}deg) rotateX(${y * -4}deg) translate(${x * -10}px, ${y * -8}px)`;
+    });
+    hero.addEventListener('pointerleave', () => { orbitStage.style.transform = ''; });
+  }
+
+  /* ---------- Checklist "para quem é" ---------- */
+  const fitButtons = Array.from(document.querySelectorAll('#fitList button'));
+  const fitFill = document.getElementById('fitFill');
+  const fitCount = document.getElementById('fitCount');
+  const fitMsg = document.getElementById('fitMsg');
+  const fitMessages = [
+    'Cada item marcado aproxima você do perfil ideal.',
+    'Bom começo. Continue marcando o que tem a ver com você.',
+    'Você já tem pontos em comum com quem mais aproveita a mentoria.',
+    'Seu momento combina com o acompanhamento. Vale verificar a disponibilidade.',
+    'Perfil muito alinhado. Esta mentoria foi pensada para empresas como a sua.',
+    'Perfil muito alinhado. Esta mentoria foi pensada para empresas como a sua.',
+    'Perfil ideal. Garanta sua conversa antes que o ciclo feche.',
+  ];
+  const updateFit = () => {
+    const n = fitButtons.filter((b) => b.getAttribute('aria-pressed') === 'true').length;
+    fitFill.style.width = `${(n / fitButtons.length) * 100}%`;
+    fitCount.textContent = `${n}/${fitButtons.length}`;
+    fitMsg.textContent = fitMessages[n];
+  };
+  fitButtons.forEach((b) => b.addEventListener('click', () => {
+    b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'));
+    updateFit();
+  }));
 
   /* ---------- FAQ: um item aberto por vez ---------- */
   const faqItems = document.querySelectorAll('.faq-item');
@@ -132,19 +241,6 @@
       faqItems.forEach((other) => { if (other !== item) other.open = false; });
     });
   });
-
-  /* ---------- Retrato do hero acompanha o mouse ---------- */
-  const portrait = document.querySelector('.hero-portrait');
-  if (portrait && !prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-    const hero = document.querySelector('.hero');
-    hero.addEventListener('mousemove', (e) => {
-      const x = e.clientX / window.innerWidth - 0.5;
-      const y = e.clientY / window.innerHeight - 0.5;
-      portrait.style.transform = `translate(${x * -14}px, ${y * -10}px)`;
-    });
-    hero.addEventListener('mouseleave', () => { portrait.style.transform = ''; });
-    portrait.style.transition = 'transform .6s cubic-bezier(.22,.8,.24,1)';
-  }
 
   /* ---------- Formulário → WhatsApp ---------- */
   const form = document.getElementById('applyForm');
@@ -182,7 +278,7 @@
 
   /* ---------- Voltar ao topo / ano ---------- */
   document.getElementById('toTop').addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   });
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
