@@ -147,7 +147,7 @@
 
   <!-- ================= RISCOS ================= -->
   <section class="section" id="decisoes">
-    <div class="sec-photo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1800&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.15"></div>
+    <div class="sec-photo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1800&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.15"></div>
     <div class="container">
       <div class="split-head reveal">
         <div>
@@ -205,7 +205,7 @@
 
   <!-- ================= MÉTODO ================= -->
   <section class="section" id="metodo">
-    <div class="sec-photo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=1800&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.15"></div>
+    <div class="sec-photo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1800&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.15"></div>
     <div class="container">
       <div class="split-head reveal">
         <div>
@@ -362,29 +362,64 @@
         <p>Da negociação com fabricantes ao desenvolvimento de produtos. Da estruturação logística ao crescimento de marcas próprias.</p>
       </div>
     </div>
-    <div class="journey-grid">
-      <figure class="j-item j-tall glow-card reveal">
-        <img src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=1200&q=70&auto=format&fit=crop" alt="Guindastes de porto carregando containers" loading="lazy">
-        <figcaption><span>01 · Origem</span>Fornecedor validado<small>Negociação com fabricantes, direto da origem.</small></figcaption>
-      </figure>
-      <figure class="j-item j-wide glow-card reveal" style="--d:80ms">
-        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1400&q=70&auto=format&fit=crop" alt="Navio porta-containers em alto mar" loading="lazy">
-        <figcaption><span>02 · Mar</span>Frete marítimo<small>Planejamento logístico antes do embarque.</small></figcaption>
-      </figure>
-      <figure class="j-item glow-card reveal" style="--d:160ms">
-        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=70&auto=format&fit=crop" alt="Corredor de galpão com porta-paletes carregados" loading="lazy">
-        <figcaption><span>03 · Galpão</span>Centro de distribuição<small>Controle total da operação, ponta a ponta.</small></figcaption>
-      </figure>
-      <figure class="j-item glow-card reveal" style="--d:240ms">
-        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=900&q=70&auto=format&fit=crop" alt="Caminhão de carga em rodovia" loading="lazy">
-        <figcaption><span>04 · Estrada</span>Distribuição<small>Estrutura pronta para crescer em escala.</small></figcaption>
-      </figure>
+    <div class="container">
+      <ol class="route" id="route">
+        <span class="route-line" aria-hidden="true"><i class="route-runner"></i></span>
+        <li class="route-stop reveal" style="--d:0ms">
+          <span class="route-node"><svg width="20" height="20"><use href="#i-globe"></use></svg></span>
+          <figure class="route-card glow-card">
+            <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=900&q=70&auto=format&fit=crop" alt="Containers empilhados no porto de origem" loading="lazy">
+            <span class="route-num" aria-hidden="true">01</span>
+            <figcaption>
+              <span class="route-tag">01 · Origem</span>
+              <strong>Fornecedor validado</strong>
+              <small>Negociação com fabricantes, direto da origem.</small>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="route-stop reveal" style="--d:110ms">
+          <span class="route-node"><svg width="20" height="20"><use href="#i-ship"></use></svg></span>
+          <figure class="route-card glow-card">
+            <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?w=900&q=70&auto=format&fit=crop" alt="Navio porta-containers carregado" loading="lazy">
+            <span class="route-num" aria-hidden="true">02</span>
+            <figcaption>
+              <span class="route-tag">02 · Mar</span>
+              <strong>Frete marítimo</strong>
+              <small>Planejamento logístico antes do embarque.</small>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="route-stop reveal" style="--d:220ms">
+          <span class="route-node"><svg width="20" height="20"><use href="#i-warehouse"></use></svg></span>
+          <figure class="route-card glow-card">
+            <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=70&auto=format&fit=crop" alt="Galpão de centro de distribuição com mercadorias" loading="lazy">
+            <span class="route-num" aria-hidden="true">03</span>
+            <figcaption>
+              <span class="route-tag">03 · Galpão</span>
+              <strong>Centro de distribuição</strong>
+              <small>Controle total da operação, ponta a ponta.</small>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="route-stop reveal" style="--d:330ms">
+          <span class="route-node"><svg width="20" height="20"><use href="#i-truck"></use></svg></span>
+          <figure class="route-card glow-card">
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=900&q=70&auto=format&fit=crop" alt="Caminhão de carga pronto para a distribuição" loading="lazy">
+            <span class="route-num" aria-hidden="true">04</span>
+            <figcaption>
+              <span class="route-tag">04 · Estrada</span>
+              <strong>Distribuição</strong>
+              <small>Estrutura pronta para crescer em escala.</small>
+            </figcaption>
+          </figure>
+        </li>
+      </ol>
     </div>
   </section>
 
   <!-- ================= COMPARATIVO ================= -->
   <section class="section compare-section">
-    <div class="sec-photo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1800&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.15"></div>
+    <div class="sec-photo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?w=1800&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.15"></div>
     <div class="container">
       <div class="center-head reveal">
         <h2><span class="w-white">Cada desafio enfrentado se transformou</span> <span class="w-gray">em um</span> <span class="w-accent">atalho para quem vem depois.</span></h2>
@@ -498,7 +533,7 @@
 
   <!-- ================= FAQ ================= -->
   <section class="section faq-section" id="faq">
-    <div class="sec-photo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1800&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.15"></div>
+    <div class="sec-photo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1800&q=60&auto=format&fit=crop" alt="" loading="lazy" data-parallax="0.15"></div>
     <div class="container faq-wrap">
       <div class="center-head reveal">
         <h2><span class="w-white">Ainda com</span> <span class="w-accent">alguma dúvida?</span></h2>
