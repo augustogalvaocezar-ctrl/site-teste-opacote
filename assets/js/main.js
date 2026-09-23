@@ -21,7 +21,7 @@
   const progress = document.getElementById('scrollProgress');
   const stickyCta = document.getElementById('stickyCta');
   const applySection = document.getElementById('aplicar');
-  const parallaxEls = reduceMotion ? [] : Array.from(document.querySelectorAll('[data-parallax]'));
+  const parallaxEls = (reduceMotion || !finePointer) ? [] : Array.from(document.querySelectorAll('[data-parallax]'));
   const driftEls = reduceMotion ? [] : Array.from(document.querySelectorAll('[data-drift]'));
 
   let ticking = false;
@@ -51,7 +51,7 @@
   onScroll();
 
   /* ---------- Transição entre seções (scroll) ---------- */
-  const fxSections = reduceMotion ? [] : Array.from(document.querySelectorAll('main > section:not(.hero):not(.marquee)'));
+  const fxSections = (reduceMotion || !finePointer) ? [] : Array.from(document.querySelectorAll('main > section:not(.hero):not(.marquee)'));
   if (fxSections.length) {
     document.documentElement.classList.add('js-fx');
     fxSections.forEach((s) => s.classList.add('fx-section'));
@@ -72,6 +72,18 @@
     window.addEventListener('resize', updateFx);
     updateFx();
   }
+
+  /* ---------- Botão fixo some quando outro botão de chamada está na tela ---------- */
+  if (hasIOEarly()) {
+    const inlineCtas = document.querySelectorAll('main a.btn-neon[href="#aplicar"], .apply-form');
+    const visible = new Set();
+    const ctaObserver = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)));
+      stickyCta.classList.toggle('hide-inline', visible.size > 0);
+    }, { threshold: 0.3 });
+    inlineCtas.forEach((el) => ctaObserver.observe(el));
+  }
+  function hasIOEarly() { return 'IntersectionObserver' in window; }
 
   /* ---------- Brilho que segue o cursor ---------- */
   const cursorGlow = document.getElementById('cursorGlow');
