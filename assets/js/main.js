@@ -1,9 +1,92 @@
 (() => {
   'use strict';
 
-  /* Número do WhatsApp que recebe as solicitações do formulário.
-     Formato internacional, só dígitos (ex.: '5548999999999'). */
-  const WHATSAPP_NUMBER = '';
+  /* Configurações editáveis ficam em assets/js/config.js */
+  const CONFIG = window.LP_CONFIG || {};
+  const WHATSAPP_NUMBER = String(CONFIG.whatsapp || '').replace(/\D/g, '');
+
+  /* ---------- Rastreamento (Meta Pixel / GA4), só se configurado ---------- */
+  const track = (name, params) => {
+    if (window.fbq) window.fbq('track', name, params);
+    if (window.gtag) window.gtag('event', name, params);
+  };
+  if (CONFIG.metaPixelId) {
+    /* eslint-disable */
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    /* eslint-enable */
+    window.fbq('init', CONFIG.metaPixelId);
+    window.fbq('track', 'PageView');
+  }
+  if (CONFIG.ga4Id) {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(CONFIG.ga4Id)}`;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', CONFIG.ga4Id);
+  }
+  document.addEventListener('click', (e) => {
+    const cta = e.target.closest('a[href="#aplicar"]');
+    if (cta) track('ViewContent', { content_name: 'Verificar disponibilidade' });
+  });
+
+  /* ---------- Vídeo do Paulo (só aparece com youtubeId) ---------- */
+  if (CONFIG.youtubeId) {
+    const videoSection = document.getElementById('video');
+    videoSection.hidden = false;
+    document.getElementById('videoPoster').addEventListener('click', (e) => {
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(CONFIG.youtubeId)}?autoplay=1&rel=0`;
+      frame.title = 'Vídeo do Paulo Ávila';
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture';
+      frame.allowFullscreen = true;
+      e.currentTarget.replaceWith(frame);
+      track('ViewContent', { content_name: 'Vídeo do Paulo' });
+    });
+  }
+
+  /* ---------- Depoimentos (só aparecem se houver itens reais) ---------- */
+  const depoimentos = Array.isArray(CONFIG.depoimentos) ? CONFIG.depoimentos.filter((d) => d && d.texto && d.nome) : [];
+  if (depoimentos.length) {
+    const grid = document.getElementById('testiGrid');
+    depoimentos.forEach((d) => {
+      const card = document.createElement('figure');
+      card.className = 'testi-card';
+      if (d.resultado) {
+        const r = document.createElement('span');
+        r.className = 'testi-result';
+        r.textContent = d.resultado;
+        card.appendChild(r);
+      }
+      const q = document.createElement('blockquote');
+      q.className = 'testi-text';
+      q.style.margin = '0';
+      q.textContent = d.texto;
+      card.appendChild(q);
+      const who = document.createElement('figcaption');
+      who.className = 'testi-who';
+      if (d.foto) {
+        const img = document.createElement('img');
+        img.src = d.foto; img.alt = d.nome; img.loading = 'lazy';
+        who.appendChild(img);
+      } else {
+        const av = document.createElement('span');
+        av.className = 'testi-avatar';
+        av.textContent = d.nome.trim().split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
+        who.appendChild(av);
+      }
+      const info = document.createElement('div');
+      const n = document.createElement('strong'); n.textContent = d.nome;
+      const c = document.createElement('small'); c.textContent = d.empresa || '';
+      info.append(n, c);
+      who.appendChild(info);
+      card.appendChild(who);
+      grid.appendChild(card);
+    });
+    document.getElementById('depoimentos').hidden = false;
+  }
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -328,12 +411,20 @@
     ].join('\n');
 
     if (!WHATSAPP_NUMBER) {
-      note.textContent = 'Solicitação pronta! Configure o número de WhatsApp em assets/js/main.js para receber os contatos.';
+      note.textContent = 'Solicitação pronta! Configure o número de WhatsApp em assets/js/config.js para receber os contatos.';
       return;
     }
+    track('Lead', { content_name: 'Conversa estratégica' });
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
     note.textContent = 'Abrindo o WhatsApp para finalizar sua solicitação…';
     form.reset();
+  });
+  const phone = document.getElementById('f-whats');
+  phone.addEventListener('input', () => {
+    const d = phone.value.replace(/\D/g, '').slice(0, 11);
+    phone.value = d.length > 10 ? `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`
+      : d.length > 6 ? `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`
+      : d.length > 2 ? `(${d.slice(0, 2)}) ${d.slice(2)}` : d;
   });
   form.querySelectorAll('input, select').forEach((field) => {
     field.addEventListener('input', () => field.classList.remove('is-invalid'));

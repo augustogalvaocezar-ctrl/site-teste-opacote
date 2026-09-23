@@ -6,6 +6,11 @@
 <title>Paulo Ávila — Acompanhamento Estratégico em Importação</title>
 <meta name="description" content="Construí uma operação de importação que passou de R$ 1 bilhão em faturamento. Agora acompanho, individualmente, empresários que desejam estruturar ou expandir uma operação própria de importação.">
 <meta name="theme-color" content="#0B0E10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Paulo Ávila — Acompanhamento Estratégico em Importação">
+<meta property="og:description" content="Construí uma operação de importação que passou de R$ 1 bilhão em faturamento. Agora acompanho, individualmente, empresários que desejam estruturar ou expandir uma operação própria de importação.">
+<meta property="og:image" content="assets/img/paulo.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%230B0E10%22/><text x=%2250%22 y=%2266%22 font-family=%22Segoe UI,Arial%22 font-weight=%22800%22 font-size=%2246%22 text-anchor=%22middle%22 fill=%22%2376BFDD%22>PA</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -306,6 +311,34 @@
     </div>
   </section>
 
+  <!-- ================= VÍDEO (aparece quando youtubeId estiver em config.js) ================= -->
+  <section class="section video-section" id="video" hidden>
+    <div class="container">
+      <div class="center-head reveal">
+        <span class="kicker"><span class="kicker-dot"></span>Conheça o Paulo</span>
+        <h2><span class="w-white">Como funciona o</span> <span class="w-accent">acompanhamento estratégico.</span></h2>
+      </div>
+      <div class="video-frame reveal">
+        <button type="button" class="video-poster" id="videoPoster" aria-label="Assistir ao vídeo">
+          <img src="assets/img/paulo-galpao.jpg" alt="" loading="lazy">
+          <span class="video-play"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DEPOIMENTOS (aparecem quando houver itens em config.js) ================= -->
+  <section class="section testimonials" id="depoimentos" hidden>
+    <div class="container">
+      <div class="center-head reveal">
+        <span class="kicker"><span class="kicker-dot"></span>Quem já passou pelo acompanhamento</span>
+        <h2><span class="w-white">Decisões mais seguras,</span> <span class="w-accent">na prática.</span></h2>
+      </div>
+      <p class="swipe-hint" aria-hidden="true">Arraste para o lado <svg width="16" height="16"><use href="#i-arrow"></use></svg></p>
+      <div class="testi-grid" id="testiGrid"></div>
+    </div>
+  </section>
+
   <!-- ================= HISTÓRIA (fotos reais) ================= -->
   <section class="section history" id="historia">
     <div class="history-bg" aria-hidden="true">
@@ -524,6 +557,7 @@
           <span class="package-badge"><span class="live-dot" aria-hidden="true"></span>Vagas limitadas</span>
           <h3>Acompanhamento Estratégico <span class="w-accent">Individual</span></h3>
           <p>Para empresários que desejam estruturar ou expandir uma operação própria de importação, com decisões mais seguras antes que erros caros aconteçam.</p>
+          <p class="package-risk"><svg width="18" height="18"><use href="#i-alert"></use></svg>Lembre: um único erro de classificação fiscal pode comprometer toda a margem da operação.</p>
         </div>
         <ul class="package-list">
           <li><svg width="18" height="18"><use href="#i-check"></use></svg><span><strong>03 meses</strong> de acompanhamento estratégico</span></li>
@@ -635,7 +669,7 @@
           <input id="f-empresa" type="text" name="empresa" required autocomplete="organization" placeholder="Nome da empresa">
         </label>
         <label for="f-whats">WhatsApp
-          <input id="f-whats" type="tel" name="whatsapp" required autocomplete="tel" placeholder="(00) 00000-0000">
+          <input id="f-whats" type="tel" name="whatsapp" required autocomplete="tel" placeholder="(00) 00000-0000" inputmode="numeric" maxlength="16">
         </label>
         <label for="f-momento">Momento da operação
           <select id="f-momento" name="momento" required>
@@ -674,6 +708,7 @@
   <span class="btn-ico"><svg width="16" height="16"><use href="#i-arrow"></use></svg></span>
 </a>
 
+<script src="assets/js/config.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
