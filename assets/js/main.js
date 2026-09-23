@@ -100,7 +100,7 @@
   }
 
   /* ---------- Reveal ao rolar ---------- */
-  const revealEls = document.querySelectorAll('.reveal, .steps, .compare, .traj-chart');
+  const revealEls = document.querySelectorAll('.reveal, .steps, .compare');
   if (reduceMotion || !hasIO) {
     revealEls.forEach((el) => el.classList.add('in-view'));
   } else {
