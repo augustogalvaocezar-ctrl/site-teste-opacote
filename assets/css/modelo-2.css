@@ -81,3 +81,8 @@ body.v2 .faq-card .faq-body{ padding:0 4px 20px; }
   body.v2 .final-points li{ text-align:left; }
   body.v2 .compare-alone, body.v2 .compare-method{ text-align:left; }
 }
+@media (max-width: 640px){
+  body.v2 .kicker{ font-size:.75rem; letter-spacing:.1em; }
+  body.v2 .panel-light .package{ padding:24px 16px; margin-inline:0; }
+  body.v2 .package-cta .btn, body.v2 .apply-form .btn{ white-space:normal; line-height:1.3; }
+}
