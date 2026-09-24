@@ -1,0 +1,87 @@
+/* =========================================================
+   MODELO 3 — "clube premium": escuro + azul do Paulo + detalhes dourados
+   Carrega por cima do modelo 2 (painéis). Só usado por modelo-3.html.
+   ========================================================= */
+body.v3{
+  --gold:#D4AF6A;
+  --gold-2:#F1DCA6;
+  --gold-3:#A8803F;
+  --gold-grad:linear-gradient(120deg, #F1DCA6 0%, #D4AF6A 40%, #A8803F 70%, #E6C987 100%);
+  --gold-line:rgba(212,175,106,.45);
+}
+
+/* painéis com borda dourada fina */
+body.v3 main > section.section, body.v3 main > .impact, body.v3 main > .final{
+  border:1px solid transparent;
+  background:
+    linear-gradient(#0B0E10, #0B0E10) padding-box,
+    linear-gradient(160deg, rgba(241,220,166,.55), rgba(212,175,106,.08) 30%, rgba(212,175,106,.08) 70%, rgba(241,220,166,.45)) border-box;
+}
+body.v3 .panel-light{
+  background:
+    linear-gradient(#EFEBE6, #EFEBE6) padding-box,
+    var(--gold-grad) border-box !important;
+  border:1.5px solid transparent !important;
+}
+
+/* selos das seções em dourado */
+body.v3 .kicker{ color:var(--gold-2); border-color:var(--gold-line); background:rgba(212,175,106,.07); }
+body.v3 .kicker-dot{ background:var(--gold); box-shadow:0 0 10px rgba(212,175,106,.8); }
+body.v3 .panel-light .kicker{ color:#8A6A2E; border-color:rgba(168,128,63,.4); background:rgba(212,175,106,.12); }
+body.v3 .panel-light .kicker-dot{ background:#A8803F; }
+
+/* números e destaques de valor em dourado */
+body.v3 .hero-big{ background:var(--gold-grad); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 0 28px rgba(212,175,106,.25)); animation:none; }
+body.v3 .hero-stats{ border-top-color:var(--gold-line); }
+body.v3 .hero-stats li{ border-left-color:var(--gold-line); }
+body.v3 .hero-stats strong, body.v3 .cinema-stat strong, body.v3 .offer-big, body.v3 .tl-year, body.v3 .cinema-result strong{
+  background:var(--gold-grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+body.v3 .hl-card.is-hl .offer-big{ background:none; color:#06222F; }
+
+/* ornamento dourado embaixo dos títulos */
+body.v3 .split-head h2::after, body.v3 .center-head h2::after, body.v3 .history-head h2::after{
+  content:''; display:block; width:64px; height:2px; margin:22px auto 0; background:var(--gold-grad); border-radius:2px;
+}
+body.v3 .panel-light h2::after{ background:linear-gradient(90deg, #A8803F, #D4AF6A); }
+
+/* cards com fio dourado */
+body.v3 .step, body.v3 .hl-card, body.v3 .route-card, body.v3 .tl-photo, body.v3 .faq-card, body.v3 .apply-form, body.v3 .cta-strip{
+  border:1px solid var(--gold-line) !important;
+}
+body.v3 .step-num, body.v3 .route-num{ -webkit-text-stroke-color:rgba(212,175,106,.55) !important; }
+body.v3 .step-ico, body.v3 .fc-ico, body.v3 .offer-ico{ color:var(--gold); }
+body.v3 .route-node{ border-color:var(--gold); color:var(--gold); box-shadow:0 0 0 6px var(--bg), 0 0 20px rgba(212,175,106,.55); }
+body.v3 .tl-dot{ border-color:var(--gold); box-shadow:0 0 12px rgba(212,175,106,.7); }
+body.v3 .tl-now .tl-dot{ background:var(--gold); }
+
+/* botão principal: azul do Paulo com aro dourado */
+body.v3 .btn-neon{ box-shadow:0 0 0 1.5px var(--gold), 0 10px 36px -10px rgba(118,191,221,.7), inset 0 1px 0 rgba(255,255,255,.45); }
+body.v3 .btn-neon:hover{ box-shadow:0 0 0 2px var(--gold-2), 0 18px 50px -10px rgba(212,175,106,.6); }
+body.v3 .btn-glass{ border-color:var(--gold-line); }
+body.v3 .sticky-cta{ box-shadow:0 0 0 1.5px var(--gold), 0 16px 40px -10px rgba(0,0,0,.8); }
+
+/* bloco da oferta: moldura dourada com brilho percorrendo */
+body.v3 .package{ border:0 !important; }
+body.v3 .package::before{
+  padding:1.5px !important;
+  background:conic-gradient(from var(--ang, 0deg), #A8803F, #F1DCA6, #D4AF6A, #6E5226, #F1DCA6, #A8803F) !important;
+  animation:goldSpin 6s linear infinite;
+}
+@property --ang{ syntax:'<angle>'; initial-value:0deg; inherits:false; }
+@keyframes goldSpin{ to{ --ang:360deg; } }
+body.v3 .package-badge{ color:var(--gold-2); border-color:var(--gold-line); background:rgba(212,175,106,.1); }
+body.v3 .package-list svg{ background:var(--gold-grad); }
+
+/* faixa rolante e marcador de progresso com toque dourado */
+body.v3 .marquee{ border-block:1px solid var(--gold); }
+body.v3 .scroll-progress{ background:var(--gold-grad); box-shadow:0 0 12px rgba(212,175,106,.7); }
+body.v3 .logo-mark{ box-shadow:0 0 0 1.5px var(--gold), 0 0 22px -4px rgba(118,191,221,.7); }
+body.v3 .faq-card .faq-plus{ border-color:var(--gold-line); }
+body.v3 .faq-card .faq-plus::before, body.v3 .faq-card .faq-plus::after{ background:var(--gold-2); }
+body.v3 .testi-result{ background:var(--gold-grad); }
+
+@media (prefers-reduced-motion: reduce){ body.v3 .package::before{ animation:none; } }
+body.v3 .final-points li span{ background:var(--gold-grad); }
+body.v3 .form-badge{ color:var(--gold-2); border-color:var(--gold-line); background:rgba(212,175,106,.08); }
+body.v3 .form-badge .live-dot{ background:var(--gold); }
