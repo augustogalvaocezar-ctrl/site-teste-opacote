@@ -1097,3 +1097,27 @@ img.img-failed{ opacity:0 !important; }
   -webkit-mask-image:radial-gradient(ellipse 40% 54% at 50% 50%, #000 62%, transparent 100%);
   mask-image:radial-gradient(ellipse 40% 54% at 50% 50%, #000 62%, transparent 100%);
 }
+
+/* =========================================================
+   CELULAR: seções coladas, sem faixa preta entre elas
+   ========================================================= */
+@media (max-width: 640px){
+  .section{ padding:52px 0; }
+  .impact{ padding:64px 0; }
+  .final{ padding:64px 0; }
+  .hero{ padding-bottom:40px; }
+  .marquee{ margin-top:0; }
+  /* fotos de fundo não escurecem para preto nas bordas: o fundo segue de uma seção para a outra */
+  .sec-photo::after{
+    background:radial-gradient(ellipse 90% 60% at var(--lx, 50%) var(--ly, 50%), rgba(30,70,96,.55), rgba(11,14,16,.9) 80%) !important;
+  }
+  .impact-bg::after, .history-bg::after{
+    background:radial-gradient(ellipse 90% 65% at 50% 50%, rgba(30,70,96,.65), rgba(11,14,16,.9) 80%) !important;
+  }
+  .final-bg::after{ background:linear-gradient(180deg, rgba(11,14,16,.9), rgba(30,70,96,.6)) !important; }
+  /* linha fina de luz marcando a troca de seção, em vez do vão escuro */
+  main > section + section:not(.marquee){ border-top:1px solid rgba(118,191,221,.12); }
+  .cta-strip{ margin-top:26px; }
+  .split-head, .center-head, .history-head{ margin-bottom:28px; }
+  .exp-cinema{ padding-bottom:52px; }
+}
