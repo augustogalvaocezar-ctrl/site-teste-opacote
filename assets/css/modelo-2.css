@@ -1,0 +1,69 @@
+/* =========================================================
+   MODELO 2 — seções em painéis separados (inspirado no FinSight)
+   Só é carregado por modelo-2.html; a versão original não muda.
+   ========================================================= */
+body.v2{ background:#050709; }
+body.v2 .page-grid{ opacity:.6; }
+
+/* ---------- títulos grandes, centralizados e mais leves ---------- */
+body.v2 .split-head{ grid-template-columns:1fr; justify-items:center; text-align:center; max-width:900px; margin-inline:auto; gap:18px; }
+body.v2 .split-head > div{ display:flex; flex-direction:column; align-items:center; }
+body.v2 .split-head p{ max-width:640px; padding-bottom:0; }
+body.v2 .split-head h2, body.v2 .center-head h2, body.v2 .history-head h2{ font-weight:600; letter-spacing:-.03em; }
+body.v2 .h2-main{ max-width:none !important; }
+body.v2 .history-head{ text-align:center; margin-inline:auto; }
+body.v2 .history-head .kicker{ justify-content:center; }
+body.v2 .kicker{ padding:6px 14px; border-radius:999px; border:1px solid var(--line-2); background:rgba(118,191,221,.06); }
+
+/* ---------- cada seção é um painel com cantos arredondados ---------- */
+body.v2 main > section.section,
+body.v2 main > .impact,
+body.v2 main > .final{
+  margin:18px clamp(10px, 1.6vw, 24px);
+  border-radius:40px; overflow:hidden; isolation:isolate;
+  border:1px solid rgba(118,191,221,.1);
+  background-color:#0B0E10;
+}
+body.v2 .section{ padding:110px 0; }
+body.v2 main > .marquee{ margin:18px 0; transform:none; border-radius:0; }
+
+/* ---------- painéis claros (bege das cores do Paulo) ---------- */
+body.v2 .panel-light{ background:#EFEBE6 !important; border-color:transparent !important; color:#1A1D1F; }
+body.v2 .panel-light .sec-photo{ display:none; }
+body.v2 .panel-light h2, body.v2 .panel-light .w-white, body.v2 .panel-light h3 { color:#11161A; }
+body.v2 .panel-light .w-gray, body.v2 .panel-light .h2-lead{ color:#6B6F70; }
+body.v2 .panel-light .w-accent{ background:linear-gradient(120deg, #1E4660, #4B8AA9); -webkit-background-clip:text; background-clip:text; color:transparent; }
+body.v2 .panel-light .split-head p{ color:#4A5358; }
+body.v2 .panel-light .kicker{ color:#1E4660; border-color:rgba(30,70,96,.25); background:rgba(30,70,96,.06); }
+body.v2 .panel-light .kicker-dot{ background:#1E4660; box-shadow:none; }
+body.v2 .panel-light .swipe-hint{ color:#1E4660; }
+body.v2 .panel-light .steps::before{ background:linear-gradient(90deg, transparent, #4B8AA9, transparent); box-shadow:none; }
+/* os cards continuam escuros: contraste forte dentro do painel claro */
+body.v2 .panel-light .step, body.v2 .panel-light .hl-card:not(.is-hl){ background:#0E1316; border-color:transparent; box-shadow:0 30px 60px -30px rgba(11,14,16,.55); }
+body.v2 .panel-light .step h3, body.v2 .panel-light .hl-card:not(.is-hl) strong{ color:#fff; }
+body.v2 .panel-light .cta-strip{ background:#0E1316; border-color:transparent; }
+body.v2 .panel-light .package{ background:linear-gradient(145deg, #1E4660, #0B0E10 70%); }
+body.v2 .panel-light .package h3{ color:#fff; }
+body.v2 .panel-light .package .w-accent{ background:var(--grad); -webkit-background-clip:text; background-clip:text; }
+
+/* ---------- FAQ num card com degradê azul ---------- */
+body.v2 .faq-card{
+  padding:28px; border-radius:28px; gap:0;
+  background:linear-gradient(170deg, #1E4660 0%, #173A50 45%, #0F2533 100%);
+  border:1px solid rgba(118,191,221,.3); box-shadow:0 40px 90px -40px rgba(118,191,221,.45);
+}
+body.v2 .faq-card .faq-item{ background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,.14); border-radius:0; box-shadow:none; }
+body.v2 .faq-card .faq-item:last-child{ border-bottom:0; }
+body.v2 .faq-card .faq-item[open]{ background:transparent; box-shadow:none; }
+body.v2 .faq-card .faq-item summary{ padding:20px 4px; }
+body.v2 .faq-card .faq-body{ padding:0 4px 20px; }
+
+/* ---------- celular ---------- */
+@media (max-width: 640px){
+  body.v2 main > section.section, body.v2 main > .impact, body.v2 main > .final{ margin:10px 8px; border-radius:28px; }
+  body.v2 .section{ padding:56px 0; }
+  body.v2 main > section + section:not(.marquee){ border-top-color:rgba(118,191,221,.1); }
+  body.v2 .faq-card{ padding:10px 18px; border-radius:22px; }
+  body.v2 .split-head, body.v2 .center-head{ text-align:center; }
+  body.v2 .kicker{ font-size:.68rem; letter-spacing:.12em; }
+}
