@@ -9,7 +9,7 @@ body.v2 .page-grid{ opacity:.6; }
 body.v2 .split-head{ grid-template-columns:1fr; justify-items:center; text-align:center; max-width:900px; margin-inline:auto; gap:18px; }
 body.v2 .split-head > div{ display:flex; flex-direction:column; align-items:center; }
 body.v2 .split-head p{ max-width:640px; padding-bottom:0; }
-body.v2 .split-head h2, body.v2 .center-head h2, body.v2 .history-head h2{ font-weight:600; letter-spacing:-.03em; }
+/* mesmo peso de título do modelo 1 */
 body.v2 .h2-main{ max-width:none !important; }
 body.v2 .history-head{ text-align:center; margin-inline:auto; }
 body.v2 .history-head .kicker{ justify-content:center; }
