@@ -67,3 +67,17 @@ body.v2 .faq-card .faq-body{ padding:0 4px 20px; }
   body.v2 .split-head, body.v2 .center-head{ text-align:center; }
   body.v2 .kicker{ font-size:.68rem; letter-spacing:.12em; }
 }
+
+/* ---------- ajustes finos do celular ---------- */
+@media (max-width: 640px){
+  /* selo de seção: se quebrar linha, continua bonito */
+  body.v2 .kicker{ border-radius:14px; text-align:center; line-height:1.5; padding:7px 14px; max-width:100%; }
+  /* cabeçalhos no mesmo alinhamento central das outras seções */
+  body.v2 .fit-copy, body.v2 .final-copy{ text-align:center; }
+  body.v2 .fit-copy .kicker, body.v2 .final-copy .kicker{ margin-inline:auto; }
+  body.v2 .fit-copy .fit-meter{ text-align:left; }
+  body.v2 .fit-copy .fit-btn{ margin-inline:auto; }
+  body.v2 .final-points{ justify-items:center; }
+  body.v2 .final-points li{ text-align:left; }
+  body.v2 .compare-alone, body.v2 .compare-method{ text-align:left; }
+}
