@@ -87,3 +87,4 @@ body.v3 .form-badge{ color:var(--gold-2); border-color:var(--gold-line); backgro
 body.v3 .form-badge .live-dot{ background:var(--gold); }
 body.v3 .cinema-facts li{ border-color:var(--gold-line); }
 body.v3 .cinema-facts svg{ color:var(--gold); }
+body.v3 .risk-box{ border-color:var(--gold); box-shadow:0 0 0 6px rgba(212,175,106,.1), 0 0 40px rgba(212,175,106,.45), inset 0 0 30px rgba(212,175,106,.18); }

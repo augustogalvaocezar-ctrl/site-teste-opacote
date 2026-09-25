@@ -1187,3 +1187,27 @@ img.img-failed{ opacity:0 !important; }
   .cinema-facts strong{ font-size:1.3rem; }
   .cinema-facts li > span{ font-size:.78rem; }
 }
+
+/* ---------- "sem avaliar os riscos" em destaque: caixa iluminada ---------- */
+.impact h2::after{ display:none; }
+.risk-box{
+  position:relative; display:inline-block; margin-top:14px; padding:.08em .38em .14em;
+  border-radius:.32em; overflow:hidden; isolation:isolate;
+  background:linear-gradient(120deg, rgba(118,191,221,.22), rgba(30,70,96,.55));
+  border:2px solid rgba(159,221,245,.85);
+  box-shadow:0 0 0 6px rgba(118,191,221,.1), 0 0 40px rgba(118,191,221,.55), inset 0 0 30px rgba(118,191,221,.25);
+  transform:rotate(-1.2deg);
+  animation:riskGlow 3s ease-in-out infinite;
+}
+.risk-box > span{ color:#fff; text-shadow:0 0 18px rgba(159,221,245,.8); }
+.risk-box::before{ /* reflexo que passa pela caixa */
+  content:''; position:absolute; z-index:-1; top:0; left:-60%; width:40%; height:100%;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
+  transform:skewX(-20deg); animation:shine 3.8s ease-in-out infinite;
+}
+@keyframes riskGlow{
+  50%{ box-shadow:0 0 0 10px rgba(118,191,221,.06), 0 0 70px rgba(118,191,221,.8), inset 0 0 36px rgba(118,191,221,.35); }
+}
+.impact-inner.reveal .risk-box{ transform:rotate(-1.2deg) scale(.9); opacity:0; transition:transform .8s var(--spring) .5s, opacity .6s ease .5s; }
+.impact-inner.in-view .risk-box{ transform:rotate(-1.2deg) scale(1); opacity:1; }
+@media (prefers-reduced-motion: reduce){ .risk-box, .risk-box::before{ animation:none; } }
