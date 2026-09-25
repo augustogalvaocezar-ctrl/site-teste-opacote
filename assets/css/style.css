@@ -1229,3 +1229,21 @@ img.img-failed{ opacity:0 !important; }
 .risk-box > span{ color:#fff; text-shadow:none; }
 .impact-inner.reveal .risk-box{ opacity:0; transition:opacity .8s ease .4s; }
 .impact-inner.in-view .risk-box{ opacity:1; }
+
+/* ---------- computador: Paulo "entra" por trás da faixa azul ---------- */
+@media (min-width: 941px){
+  .hero{ padding-bottom:0; align-items:stretch; }
+  .hero-inner{ align-items:end; }
+  .hero-copy{ align-self:center; padding-bottom:110px; }
+  .hero-visual{ align-self:end; }
+  .hero .portrait{ -webkit-mask-image:none !important; mask-image:none !important; }
+  .orbit-stage{ margin-bottom:-2px; }
+  .marquee{ position:relative; z-index:6; margin-top:-70px; }
+}
+@media (min-width: 941px){
+  .orbit-stage{ margin-bottom:34px; }
+  .marquee{ margin-top:-96px; }
+}
+@media (min-width: 941px){
+  .hero .portrait-wrap{ clip-path:inset(-200px -200px 0 -200px); }
+}
