@@ -85,3 +85,5 @@ body.v3 .testi-result{ background:var(--gold-grad); }
 body.v3 .final-points li span{ background:var(--gold-grad); }
 body.v3 .form-badge{ color:var(--gold-2); border-color:var(--gold-line); background:rgba(212,175,106,.08); }
 body.v3 .form-badge .live-dot{ background:var(--gold); }
+body.v3 .cinema-facts li{ border-color:var(--gold-line); }
+body.v3 .cinema-facts svg{ color:var(--gold); }
