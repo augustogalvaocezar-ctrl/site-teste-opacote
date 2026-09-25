@@ -1211,3 +1211,21 @@ img.img-failed{ opacity:0 !important; }
 .impact-inner.reveal .risk-box{ transform:rotate(-1.2deg) scale(.9); opacity:0; transition:transform .8s var(--spring) .5s, opacity .6s ease .5s; }
 .impact-inner.in-view .risk-box{ transform:rotate(-1.2deg) scale(1); opacity:1; }
 @media (prefers-reduced-motion: reduce){ .risk-box, .risk-box::before{ animation:none; } }
+@media (min-width: 941px){
+  .impact h2{ max-width:1180px; }
+  .risk-box{ font-size:.82em; white-space:nowrap; }
+}
+
+/* ---------- caixa de destaque: versão sóbria (autoridade, não neon) ---------- */
+.risk-box{
+  transform:none !important; animation:none !important;
+  border-radius:10px; padding:.1em .45em .16em .55em;
+  background:#1E4660;
+  border:1px solid rgba(118,191,221,.35);
+  border-left:6px solid #76BFDD;
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.9);
+}
+.risk-box::before{ display:none !important; }
+.risk-box > span{ color:#fff; text-shadow:none; }
+.impact-inner.reveal .risk-box{ opacity:0; transition:opacity .8s ease .4s; }
+.impact-inner.in-view .risk-box{ opacity:1; }
