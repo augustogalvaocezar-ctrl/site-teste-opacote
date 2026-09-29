@@ -28,8 +28,8 @@
     window.gtag('config', CONFIG.ga4Id);
   }
   document.addEventListener('click', (e) => {
-    const cta = e.target.closest('a[href="#aplicar"]');
-    if (cta) track('ViewContent', { content_name: 'Verificar disponibilidade' });
+    const cta = e.target.closest('a[href="#aplicar"], a[data-agenda]');
+    if (cta) track(cta.hasAttribute('data-agenda') ? 'Schedule' : 'ViewContent', { content_name: 'Verificar disponibilidade' });
   });
 
   /* ---------- Vídeo do Paulo (só aparece com youtubeId) ---------- */
@@ -168,7 +168,7 @@
 
   /* ---------- Botão fixo some quando outro botão de chamada está na tela ---------- */
   if (hasIOEarly()) {
-    const inlineCtas = document.querySelectorAll('main a.btn-neon[href="#aplicar"], .apply-form');
+    const inlineCtas = document.querySelectorAll('main a.btn-neon[data-agenda], .apply-form');
     const visible = new Set();
     const ctaObserver = new IntersectionObserver((entries) => {
       entries.forEach((e) => (e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)));
