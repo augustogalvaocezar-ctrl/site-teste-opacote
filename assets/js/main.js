@@ -413,11 +413,12 @@
 
     const data = new FormData(form);
     const message = [
-      'Olá, Paulo! Quero verificar a disponibilidade do acompanhamento estratégico.',
-      `Nome: ${data.get('nome')}`,
-      `Empresa: ${data.get('empresa')}`,
-      `WhatsApp: ${data.get('whatsapp')}`,
-      `Momento: ${data.get('momento')}`,
+      'Olá, Paulo! Vim pelo site e quero verificar a disponibilidade do *Acompanhamento Estratégico em Importação*.',
+      '',
+      `*Nome:* ${data.get('nome').trim()}`,
+      `*Empresa:* ${data.get('empresa').trim()}`,
+      `*WhatsApp:* ${data.get('whatsapp').trim()}`,
+      `*Momento da operação:* ${data.get('momento')}`,
     ].join('\n');
 
     if (!WHATSAPP_NUMBER) {
@@ -425,7 +426,10 @@
       return;
     }
     track('Lead', { content_name: 'Conversa estratégica' });
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    // abre em nova aba; se o navegador bloquear (comum no celular), abre na mesma aba
+    const win = window.open(waUrl, '_blank');
+    if (!win) window.location.href = waUrl;
     note.textContent = 'Abrindo o WhatsApp para finalizar sua solicitação…';
     form.reset();
   });

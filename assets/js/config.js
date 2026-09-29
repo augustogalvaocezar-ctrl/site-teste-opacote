@@ -5,7 +5,7 @@
 window.LP_CONFIG = {
   /* WhatsApp que recebe as solicitações do formulário.
      Formato internacional, só dígitos. Ex.: '5548999999999' */
-  whatsapp: '',
+  whatsapp: '5548988657450',
 
   /* Vídeo do Paulo no YouTube: cole só o ID do vídeo.
      Ex.: para https://www.youtube.com/watch?v=AbC123xyz → 'AbC123xyz'
