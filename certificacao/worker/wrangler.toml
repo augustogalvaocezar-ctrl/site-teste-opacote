@@ -1,0 +1,11 @@
+name = "opacote-certificacao-ia"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+# Domínios que podem chamar a IA (separados por vírgula).
+ALLOWED_ORIGINS = "https://augustogalvaocezar-ctrl.github.io"
+
+# Segredos (não coloque aqui — use os comandos):
+#   npx wrangler secret put ANTHROPIC_API_KEY
+#   npx wrangler secret put ACCESS_TOKEN      (opcional: senha da equipe)
