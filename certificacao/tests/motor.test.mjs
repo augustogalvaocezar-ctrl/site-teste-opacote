@@ -37,14 +37,15 @@ test('air fryer → INMETRO (148) + ANVISA, sem ANATEL', () => {
   assert.ok(ids(f).includes('inmetro-eletro'));
   assert.ok(ids(f).includes('anvisa-alimentos'));
   assert.ok(!f.orgaos.includes('ANATEL'));
-  assert.equal(f.resumo.startsWith('Precisa de INMETRO'), true);
+  assert.equal(f.veredito, 'sim');
+  assert.ok(f.resumo.startsWith('Sim, precisa de INMETRO'));
 });
 
 test('air fryer com Wi-Fi → INMETRO e ANATEL', () => {
   const f = montarFicha({ consulta: 'Air fryer com wi-fi 5L' });
   assert.ok(f.orgaos.includes('INMETRO'));
   assert.ok(f.orgaos.includes('ANATEL'));
-  assert.ok(f.resumo.startsWith('Precisa de INMETRO e ANATEL'));
+  assert.equal(f.resumo, 'Sim, precisa de INMETRO e ANATEL');
 });
 
 test('fone bluetooth → ANATEL Categoria II', () => {
@@ -97,7 +98,7 @@ test('produto desconhecido usa só as características', () => {
   const f = montarFicha({ consulta: 'Gadget xyz bluetooth' });
   assert.equal(f.produto, null);
   assert.ok(ids(f).includes('anatel-cat2'));
-  assert.ok(f.alertas[0].includes('não encontrado'));
+  assert.ok(f.alertas[0].includes('fora da lista'));
 });
 
 test('"smart" é só provável e gera alerta de confirmação', () => {
@@ -132,4 +133,54 @@ test('extras da IA entram na ficha com origem "ia"', () => {
   assert.equal(f.origem, 'ia');
   assert.ok(f.regulamentos.some((r) => r.origem === 'ia' && r.orgao === 'ANVISA'));
   assert.equal(f.prazoMaxDias, 120);
+});
+
+test('veredito: produto conhecido sem certificação → NÃO', () => {
+  const f = montarFicha({ consulta: 'Garrafa térmica inox 1L' });
+  assert.equal(f.veredito, 'nao');
+  assert.ok(f.resumoExtra.includes('ANVISA'));
+});
+
+test('veredito: produto desconhecido sem respostas → pendente', () => {
+  const f = montarFicha({ consulta: 'Cadeira gamer reclinável' });
+  assert.equal(f.veredito, 'pendente');
+});
+
+test('veredito: desconhecido que liga na tomada → provavelmente INMETRO', () => {
+  const f = montarFicha({ consulta: 'Cadeira massageadora', atributos: { eletrico: true }, respondido: true });
+  assert.equal(f.veredito, 'provavel');
+  assert.ok(f.regulamentos.find((r) => r.id === 'inmetro-eletro').provavel);
+});
+
+test('veredito: desconhecido com rádio → SIM (ANATEL) e provável INMETRO', () => {
+  const f = montarFicha({ consulta: 'Cadeira gamer', atributos: { eletrico: true, bluetooth: true }, respondido: true });
+  assert.equal(f.veredito, 'sim');
+  assert.equal(f.resumo, 'Sim, precisa de ANATEL (e provavelmente INMETRO)');
+});
+
+test('veredito: desconhecido respondendo tudo "não" → NÃO', () => {
+  const f = montarFicha({ consulta: 'Cadeira gamer', atributos: {}, respondido: true });
+  assert.equal(f.veredito, 'nao');
+});
+
+test('"elétrico" no nome marca ligado à tomada', () => {
+  assert.ok(detectarSinais('Cobertor elétrico casal').eletrico);
+});
+
+test('cobertor elétrico → INMETRO; bola infantil → provavelmente brinquedo', () => {
+  assert.equal(montarFicha({ consulta: 'Cobertor elétrico casal' }).veredito, 'sim');
+  const f = montarFicha({ consulta: 'Bola de futebol infantil' });
+  assert.equal(f.veredito, 'provavel');
+  assert.ok(f.resumo.includes('INMETRO'));
+});
+
+test('regra geral não duplica INMETRO de produto já certificado', () => {
+  const f = montarFicha({ consulta: 'Boneca infantil' });
+  assert.equal(f.regulamentos.filter((r) => r.orgao === 'INMETRO').length, 1);
+});
+
+test('garrafa infantil não vira brinquedo (só alerta)', () => {
+  const f = montarFicha({ consulta: 'Garrafa térmica infantil' });
+  assert.equal(f.veredito, 'nao');
+  assert.ok(f.alertas.some((a) => a.includes('brinquedo')));
 });

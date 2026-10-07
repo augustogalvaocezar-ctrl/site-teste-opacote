@@ -154,7 +154,27 @@ button{ font:inherit; }
 .alternativas select{ font:inherit; font-size:.82rem; padding:4px 8px; border-radius:8px; border:1px solid var(--border-strong); background:var(--surface); width:100%; max-width:420px; }
 .banner-ia{ grid-column:1 / -1; background:var(--t-info-bg); color:var(--t-info); border-radius:var(--radius-sm); padding:12px 14px; font-size:.9rem; }
 .banner-ia strong{ color:inherit; }
-.banner-vazio{ grid-column:1 / -1; background:var(--t-atencao-bg); color:var(--t-atencao); border-radius:var(--radius-sm); padding:12px 14px; font-size:.9rem; display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:space-between; }
+
+/* ---------- Veredito ---------- */
+.veredito-selo{ display:inline-block; margin-top:12px; border-radius:8px; padding:6px 14px; font-family:var(--ff-head); font-weight:800; font-size:1rem; letter-spacing:.06em; background:var(--t-neutro-bg); color:var(--t-neutro); }
+.veredito-sim{ border-top-color:var(--t-alerta); }
+.veredito-sim .veredito-selo{ background:var(--t-alerta); color:#fff; }
+.veredito-provavel{ border-top-color:var(--accent); }
+.veredito-provavel .veredito-selo{ background:var(--accent); color:var(--dark); }
+.veredito-nao{ border-top-color:var(--t-ok); }
+.veredito-nao .veredito-selo{ background:var(--t-ok); color:#fff; }
+.veredito-pendente{ border-top-color:var(--muted); }
+
+/* ---------- Perguntas (produto fora da base) ---------- */
+.perguntas{ grid-column:1 / -1; background:var(--bg); border-radius:var(--radius-md); padding:16px 18px; }
+.perguntas-titulo{ font-size:.95rem; color:var(--text); }
+.perguntas-lista{ margin:12px 0 0; padding-left:20px; display:flex; flex-direction:column; gap:10px; }
+.perguntas-lista li{ font-size:.95rem; }
+.perguntas-lista li > span:first-child{ display:inline-block; margin-right:10px; }
+.sim-nao{ display:inline-flex; gap:6px; vertical-align:middle; margin-top:4px; }
+.sim-nao button{ border:1px solid var(--border-strong); background:var(--surface); color:var(--dark); border-radius:999px; padding:5px 16px; font-weight:700; font-size:.85rem; cursor:pointer; }
+.sim-nao button:hover{ background:var(--bg-soft); }
+.sim-nao button[aria-pressed="true"]{ background:var(--dark); color:var(--cream); border-color:var(--dark); }
 
 /* ---------- Selos de órgão ---------- */
 .selo{ display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:5px 12px; font-weight:800; font-size:.8rem; letter-spacing:.03em; }
@@ -253,6 +273,9 @@ button{ font:inherit; }
 .lista-icone li{ position:relative; padding-left:26px; font-size:.92rem; }
 .lista-icone li::before{ content:''; position:absolute; left:4px; top:7px; width:10px; height:10px; border-radius:3px; background:var(--accent); }
 .lista-alerta li::before{ background:var(--t-alerta); border-radius:50%; }
+.ia-rodape{ text-align:center; margin-top:4px; }
+.link-ia{ background:none; border:0; color:var(--muted); font-size:.82rem; cursor:pointer; display:inline-flex; align-items:center; gap:8px; text-decoration:underline; text-underline-offset:3px; }
+.link-ia:hover{ color:var(--dark); }
 .aviso-legal{ font-size:.82rem; color:var(--muted); text-align:center; max-width:780px; margin:6px auto 0; }
 
 /* ---------- Modal ---------- */
@@ -297,7 +320,7 @@ button{ font:inherit; }
   body{ background:#fff; font-size:11pt; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .ajustes{ grid-template-columns:1fr; }
   .ajustes-col:last-child{ display:none; }
-  .topo, .busca, .catalogo, .resumo-acoes, .alternativas, .banner-vazio button, .toast, .modal, .dica{ display:none !important; }
+  .topo, .busca, .catalogo, .resumo-acoes, .alternativas, .sim-nao button[aria-pressed="false"], .ia-rodape, .toast, .modal, .dica{ display:none !important; }
   .resultado{ padding:0; gap:10px; }
   .cartao{ box-shadow:none; border:1px solid #ccd; padding:14px; }
   .reg, .var-linha{ break-inside:avoid; }

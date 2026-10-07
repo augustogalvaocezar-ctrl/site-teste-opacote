@@ -1,8 +1,8 @@
 /* =========================================================================
    Interface do Sistema de Certificação Opacote
    ========================================================================= */
-import { montarFicha, listarCatalogo, normalizar } from './motor.js';
-import { ATRIBUTOS, PRODUTOS, ORGAOS, BASE_INFO } from './base-regulatoria.js';
+import { montarFicha, listarCatalogo, normalizar, identificarProduto, detectarSinais } from './motor.js';
+import { ATRIBUTOS, PRODUTOS, ORGAOS, BASE_INFO, PERGUNTAS } from './base-regulatoria.js';
 import { fichaDaIA } from './ia-claude.js';
 import { analisar, lerConfig, salvarConfig, iaPronta } from './ia-navegador.js';
 
@@ -31,6 +31,7 @@ const estado = {
   consulta: '',
   produtoId: null,
   atributos: null, // null = usar os padrões do produto/texto
+  respostas: {}, // perguntas Sim/Não para produto fora da base
   variacoes: VARIACOES_VAZIAS(),
   resultadoIA: null,
   ficha: null,
@@ -116,7 +117,7 @@ function atualizarHash() {
 function buscar(consulta, produtoId = null) {
   consulta = String(consulta ?? '').trim();
   if (consulta.length < 2) return;
-  Object.assign(estado, { consulta, produtoId, atributos: null, variacoes: VARIACOES_VAZIAS(), resultadoIA: null });
+  Object.assign(estado, { consulta, produtoId, atributos: null, respostas: respostasDoNome(consulta), variacoes: VARIACOES_VAZIAS(), resultadoIA: null });
   $('#campoProduto').value = consulta;
   limparCamposVariacao();
   salvarRecente(consulta);
@@ -129,16 +130,65 @@ function buscar(consulta, produtoId = null) {
 }
 
 /* ---------------- ficha ---------------- */
+/* O que o próprio nome já responde (ex.: "bluetooth" responde a pergunta do rádio) */
+function respostasDoNome(consulta) {
+  const sinais = detectarSinais(consulta);
+  const respostas = {};
+  for (const q of PERGUNTAS) {
+    if (q.atributos.some((a) => sinais[a] && !sinais[a].provavel)) respostas[q.id] = true;
+  }
+  return respostas;
+}
+
+function produtoConhecido() {
+  return Boolean(estado.produtoId || identificarProduto(estado.consulta).melhor);
+}
+
 function calcularFicha() {
   if (estado.resultadoIA) {
     return fichaDaIA(estado.consulta, estado.resultadoIA, estado.variacoes, estado.atributos ?? undefined);
+  }
+  if (!produtoConhecido() && !estado.atributos) {
+    const atributos = {};
+    for (const q of PERGUNTAS) for (const a of q.atributos) if (estado.respostas[q.id]) atributos[a] = true;
+    return montarFicha({
+      consulta: estado.consulta,
+      atributos,
+      respondido: PERGUNTAS.every((q) => q.id in estado.respostas),
+      variacoes: estado.variacoes,
+    });
   }
   return montarFicha({
     consulta: estado.consulta,
     produtoId: estado.produtoId,
     atributos: estado.atributos ?? undefined,
+    respondido: true,
     variacoes: estado.variacoes,
   });
+}
+
+const VEREDITOS = {
+  sim: 'SIM',
+  provavel: 'PROVAVELMENTE SIM',
+  nao: 'NÃO',
+  pendente: 'RESPONDA',
+};
+
+function htmlPerguntas() {
+  const faltam = PERGUNTAS.filter((q) => !(q.id in estado.respostas)).length;
+  return `
+    <div class="perguntas">
+      <p class="perguntas-titulo"><strong>Esse produto não está na lista.</strong> ${faltam ? `Responda ${faltam === PERGUNTAS.length ? 'estas perguntas rápidas' : `mais ${faltam} pergunta${faltam > 1 ? 's' : ''}`} para saber se precisa de certificação.` : 'Pronto! Você pode mudar as respostas quando quiser.'}</p>
+      <ol class="perguntas-lista">
+        ${PERGUNTAS.map((q) => {
+          const r = estado.respostas[q.id];
+          return `<li><span>${esc(q.texto)}</span><span class="sim-nao" role="group" aria-label="${esc(q.texto)}">
+            <button type="button" data-resposta="${esc(q.id)}:sim" aria-pressed="${r === true}">Sim</button>
+            <button type="button" data-resposta="${esc(q.id)}:nao" aria-pressed="${r === false}">Não</button>
+          </span></li>`;
+        }).join('')}
+      </ol>
+    </div>`;
 }
 
 function render({ ajustes = false } = {}) {
@@ -163,7 +213,9 @@ function renderResumo(f) {
     : '';
   const opcoes = PRODUTOS.map((p) => `<option value="${esc(p.id)}"${f.produto?.id === p.id ? ' selected' : ''}>${esc(p.nome)}</option>`).join('');
   const origem = f.origem === 'ia' ? '<span class="tag tag-ia">Classificado por IA</span>' : '<span class="tag">Base interna</span>';
-  const botaoIA = estado.carregandoIA
+  const botaoIA = !iaPronta() && !estado.resultadoIA
+    ? ''
+    : estado.carregandoIA
     ? '<button type="button" class="btn btn-escuro btn-sm" disabled><span class="carregando"></span> Analisando…</button>'
     : estado.resultadoIA
       ? '<button type="button" class="btn btn-escuro btn-sm" data-acao="base">Voltar para a base</button>'
@@ -173,17 +225,17 @@ function renderResumo(f) {
   if (f.ia) {
     banner = `<div class="banner-ia"><strong>Ficha montada com apoio da IA (confiança ${esc(f.ia.confianca)}).</strong> ${esc(f.ia.descricao)} ${esc(f.ia.justificativa)}</div>`;
   } else if (!f.produto) {
-    banner = `<div class="banner-vazio"><span><strong>Produto não está na base interna.</strong> A ficha abaixo usa só as características marcadas. Para um enquadramento completo, use a IA.</span>${
-      estado.carregandoIA ? '' : `<button type="button" class="btn btn-escuro btn-sm" data-acao="ia">${iaPronta() ? 'Analisar com IA' : 'Configurar IA'}</button>`
-    }</div>`;
+    banner = htmlPerguntas();
   }
 
+  $('#secResumo').className = `cartao resumo veredito-${f.veredito}`;
   $('#secResumo').innerHTML = `
     <div>
       <div class="resumo-produto">
         <span class="tag">${esc(f.produto?.categoria ?? 'Não identificado')}</span>${origem}
         <span>Busca: “${esc(f.consulta)}”</span>
       </div>
+      <span class="veredito-selo">${VEREDITOS[f.veredito]}</span>
       <h2>${esc(f.resumo)}</h2>
       ${f.resumoExtra ? `<p class="resumo-extra">${esc(f.resumoExtra)}</p>` : ''}
       <div class="selos">${f.orgaos.map(selo).join('')}</div>
@@ -437,7 +489,7 @@ function atualizarStatusIA() {
   const cfg = lerConfig();
   const pronta = iaPronta(cfg);
   $('#iaStatusPonto').classList.toggle('on', pronta);
-  $('#iaStatusTexto').textContent = pronta ? (cfg.modo === 'servidor' ? 'IA: servidor' : 'IA: navegador') : 'IA desligada';
+  $('#iaStatusTexto').textContent = pronta ? `Análise por IA: ligada (${cfg.modo === 'servidor' ? 'servidor' : 'navegador'})` : 'Análise por IA: desligada (opcional, paga)';
 }
 
 function mostrarCamposModo() {
@@ -463,9 +515,14 @@ function ligarEventos() {
   });
 
   document.addEventListener('click', (e) => {
-    const alvo = e.target.closest('[data-busca],[data-produto],[data-acao]');
+    const alvo = e.target.closest('[data-busca],[data-produto],[data-acao],[data-resposta]');
     if (!alvo) return;
-    if (alvo.dataset.busca) buscar(alvo.dataset.busca);
+    if (alvo.dataset.resposta) {
+      const [id, valor] = alvo.dataset.resposta.split(':');
+      estado.respostas = { ...estado.respostas, [id]: valor === 'sim' };
+      estado.atributos = null;
+      render({ ajustes: true });
+    } else if (alvo.dataset.busca) buscar(alvo.dataset.busca);
     else if (alvo.dataset.produto) {
       const p = PRODUTOS.find((x) => x.id === alvo.dataset.produto);
       if (!p) return;

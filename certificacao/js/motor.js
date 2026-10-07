@@ -200,6 +200,20 @@ export function montarFicha(p) {
     for (const id of REGRAS_ATRIBUTO[atr.id] ?? []) adicionar(id, `Característica: ${atr.rotulo}`);
   }
 
+  /* Regra geral (marcada como provável): produto fora da base, ou característica
+     que o cadastro do produto não previa (ex.: "cobertor elétrico", "bola infantil") */
+  const provaveis = new Set();
+  const temOrgao = (orgao) => [...motivos.keys()].some((id) => REGULAMENTOS[id].orgao === orgao);
+  const novo = (id) => atributos[id] && !produto?.atributos?.[id];
+  if (novo('eletrico') && !temOrgao('INMETRO')) {
+    adicionar('inmetro-eletro', 'Provável: aparelho ligado à tomada (regra geral da Portaria 148/2022)');
+    provaveis.add('inmetro-eletro');
+  }
+  if (novo('infantil') && !temOrgao('INMETRO') && (!produto || produto.categoria === 'Infantil & Lazer')) {
+    adicionar('inmetro-brinquedos', 'Provável: produto para criança de até 14 anos (brinquedo)');
+    provaveis.add('inmetro-brinquedos');
+  }
+
   const alertas = [];
   /* 2. Remove o que depende de característica desmarcada */
   for (const [id, deps] of Object.entries(DEPENDENCIAS)) {
@@ -214,7 +228,7 @@ export function montarFicha(p) {
   }
 
   const regs = [...motivos.entries()]
-    .map(([id, mot]) => ({ id, ...REGULAMENTOS[id], motivos: mot, origem: 'base' }))
+    .map(([id, mot]) => ({ id, ...REGULAMENTOS[id], motivos: mot, origem: 'base', provavel: provaveis.has(id) }))
     .concat(
       (p.extras ?? []).map((e, i) => ({
         id: `extra-${i + 1}`,
@@ -231,7 +245,13 @@ export function montarFicha(p) {
 
   /* 3. Alertas */
   if (!produto) {
-    alertas.unshift('Produto não encontrado na base: a ficha considera só as características marcadas. Use "Analisar com IA" para um enquadramento completo.');
+    alertas.unshift('Produto fora da lista da base: o resultado vem das respostas às perguntas (regra geral). Confirme com um organismo certificador antes de importar.');
+  }
+  if (provaveis.has('inmetro-eletro')) {
+    alertas.push('Aparelho ligado à tomada costuma precisar de INMETRO (Portaria 148/2022), mas nem todo aparelho está na lista. Confirme com um OCP se o seu está na Tabela 1 do Anexo III.');
+  }
+  if (provaveis.has('inmetro-brinquedos')) {
+    alertas.push('Produto para criança costuma ser brinquedo (Portaria 302/2021). Se for material escolar, a regra é a Portaria 423/2021.');
   }
   for (const nota of produto?.notas ?? []) alertas.push(nota);
   for (const reg of regs) for (const a of reg.alertas ?? []) if (!alertas.includes(a)) alertas.push(a);
@@ -256,17 +276,30 @@ export function montarFicha(p) {
     alertas.push('Itens marcados como "conferir" precisam de confirmação do número ou do escopo vigente antes de contratar ensaios.');
   }
 
-  /* 4. Resumo */
+  /* 4. Resumo e veredito */
   const obrigatorios = regs.filter((r) => r.compulsorio);
   const orgaos = ORDEM_ORGAOS.filter((o) => obrigatorios.some((r) => r.orgao === o));
-  const certificacoes = orgaos.filter((o) => o === 'INMETRO' || o === 'ANATEL');
+  const ehCert = (r) => r.compulsorio && (r.orgao === 'INMETRO' || r.orgao === 'ANATEL');
+  const certConfirmadas = ORDEM_ORGAOS.filter((o) => regs.some((r) => ehCert(r) && !r.provavel && r.orgao === o));
+  const certProvaveis = ORDEM_ORGAOS.filter((o) => regs.some((r) => ehCert(r) && r.orgao === o) && !certConfirmadas.includes(o));
+  const juntar = (lista) => lista.join(' e ');
+  let veredito;
   let resumo;
-  if (certificacoes.length === 2) resumo = 'Precisa de INMETRO e ANATEL';
-  else if (certificacoes.length === 1) resumo = `Precisa de ${certificacoes[0]}`;
-  else if (!produto) resumo = 'Enquadramento pendente: produto fora da base';
-  else resumo = 'Sem certificação INMETRO/ANATEL obrigatória';
-  const outros = orgaos.filter((o) => !certificacoes.includes(o)).map((o) => ORGAOS[o].nome);
-  const resumoExtra = outros.length ? `Também: ${outros.join(', ')}` : '';
+  if (certConfirmadas.length) {
+    veredito = 'sim';
+    resumo = `Sim, precisa de ${juntar(certConfirmadas)}${certProvaveis.length ? ` (e provavelmente ${juntar(certProvaveis)})` : ''}`;
+  } else if (certProvaveis.length) {
+    veredito = 'provavel';
+    resumo = `Provavelmente precisa de ${juntar(certProvaveis)}`;
+  } else if (!produto && !p.respondido) {
+    veredito = 'pendente';
+    resumo = 'Responda as perguntas para saber';
+  } else {
+    veredito = 'nao';
+    resumo = 'Não precisa de certificação INMETRO ou ANATEL';
+  }
+  const outros = orgaos.filter((o) => o !== 'INMETRO' && o !== 'ANATEL').map((o) => ORGAOS[o].nome);
+  const resumoExtra = outros.length ? `${veredito === 'nao' ? 'Mas atenção a' : 'Também'}: ${outros.join(', ')}` : '';
 
   const passos = ORDEM_ORGAOS.filter((o) => regs.some((r) => r.orgao === o) && PASSOS[o]).map((o) => ({ orgao: o, nome: ORGAOS[o].nome, passos: PASSOS[o] }));
   const marketplaces = [...MARKETPLACES.GERAL, ...orgaos.flatMap((o) => MARKETPLACES[o] ?? [])];
@@ -282,6 +315,7 @@ export function montarFicha(p) {
     sinais,
     regulamentos: regs,
     orgaos,
+    veredito,
     resumo,
     resumoExtra,
     prazoMaxDias: maiorPrazoEmDias(regs.filter((r) => r.compulsorio)),
