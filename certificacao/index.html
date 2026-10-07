@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Certificação de Produtos — Opacote</title>
+<meta name="description" content="Ferramenta interna da Opacote: digite o produto e veja se precisa de INMETRO, ANATEL ou os dois, com a ficha completa.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23182833%22/><path d=%22M50 14 L80 30 L80 62 L50 78 L20 62 L20 30 Z%22 fill=%22none%22 stroke=%22%23F6A115%22 stroke-width=%227%22 stroke-linejoin=%22round%22/><path d=%22M20 30 L50 46 L80 30 M50 46 L50 78%22 fill=%22none%22 stroke=%22%23F6A115%22 stroke-width=%227%22 stroke-linejoin=%22round%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Raleway:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/certificacao.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="container topo-inner">
+    <a href="../index.html" class="logo" title="Voltar ao site">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><path d="M50 14 L80 30 L80 62 L50 78 L20 62 L20 30 Z" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/><path d="M20 30 L50 46 L80 30 M50 46 L50 78" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/></svg>
+      </span>
+      OPACOTE
+    </a>
+    <span class="topo-sep" aria-hidden="true"></span>
+    <span class="topo-titulo">Certificação</span>
+    <div class="topo-acoes">
+      <button type="button" class="btn btn-claro btn-sm" id="btnConfigIA">
+        <span class="ponto" id="iaStatusPonto" aria-hidden="true"></span>
+        <span id="iaStatusTexto">IA desligada</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ================= BUSCA ================= -->
+  <section class="busca">
+    <div class="container">
+      <p class="eyebrow">Ferramenta interna</p>
+      <h1>Qual produto você quer certificar?</h1>
+      <p class="busca-sub">Digite o nome do produto. O sistema identifica se ele precisa de <strong>INMETRO</strong>, <strong>ANATEL</strong> ou dos dois e monta a ficha completa: normas, ensaios, documentos, variações, prazos e custos.</p>
+
+      <form class="busca-form" id="formBusca" autocomplete="off">
+        <label for="campoProduto" class="sr-only">Nome do produto</label>
+        <input id="campoProduto" name="produto" type="text" placeholder="Ex.: Air fryer 5L bivolt com Wi-Fi" required minlength="2" maxlength="300">
+        <button type="submit" class="btn btn-destaque">Gerar ficha</button>
+      </form>
+
+      <div class="sugestoes" id="sugestoes" aria-label="Exemplos"></div>
+      <div class="recentes" id="recentes" hidden></div>
+      <button type="button" class="link-catalogo" id="btnCatalogo" aria-expanded="false" aria-controls="catalogo"></button>
+    </div>
+  </section>
+
+  <section class="catalogo container" id="catalogo" hidden></section>
+
+  <!-- ================= RESULTADO ================= -->
+  <div class="container resultado" id="resultado" hidden>
+    <div class="print-cabecalho">Ficha de certificação · Opacote · <span id="printData"></span></div>
+
+    <section class="cartao resumo" id="secResumo"></section>
+
+    <section class="cartao ajustes no-print-inputs" id="secAjustes">
+      <div class="ajustes-col">
+        <h2 class="titulo-secao">Características</h2>
+        <p class="dica">Marque o que o produto tem. A ficha se atualiza na hora.</p>
+        <div class="chips-check" id="atributos"></div>
+      </div>
+      <div class="ajustes-col">
+        <h2 class="titulo-secao">Variações planejadas</h2>
+        <p class="dica">Informe as variações para ver o que pode ficar na mesma família e o que precisa de certificação separada.</p>
+        <div class="campo">
+          <span class="campo-rotulo">Voltagem</span>
+          <div class="chips-check" id="varVoltagem">
+            <label class="chip-check"><input type="checkbox" value="127 V"><span>127 V</span></label>
+            <label class="chip-check"><input type="checkbox" value="220 V"><span>220 V</span></label>
+            <label class="chip-check"><input type="checkbox" value="Bivolt"><span>Bivolt</span></label>
+          </div>
+        </div>
+        <label class="campo"><span class="campo-rotulo">Cores / estampas</span><input type="text" id="varCor" placeholder="preto, branco, rosa"></label>
+        <label class="campo"><span class="campo-rotulo">Tamanhos, capacidades ou potências</span><input type="text" id="varTamanho" placeholder="3 L, 5 L"></label>
+        <label class="campo"><span class="campo-rotulo">Marcas / nomes comerciais</span><input type="text" id="varMarca" placeholder="Marca A, Marca B"></label>
+        <label class="chip-check chip-linha"><input type="checkbox" id="varConectividade"><span>Vai ter versão com e sem conectividade (Wi-Fi/Bluetooth)</span></label>
+      </div>
+    </section>
+
+    <section class="cartao" id="secOrgaos"></section>
+    <section class="cartao" id="secDocumentos"></section>
+    <section class="cartao" id="secVariacoes"></section>
+    <section class="cartao" id="secPassos"></section>
+    <section class="cartao duas-colunas" id="secMercado"></section>
+
+    <p class="aviso-legal" id="avisoLegal"></p>
+  </div>
+</main>
+
+<!-- ================= CONFIGURAÇÃO DA IA ================= -->
+<dialog class="modal" id="modalIA" aria-labelledby="modalIATitulo">
+  <form method="dialog" id="formIA">
+    <h2 id="modalIATitulo">Análise por IA (Claude)</h2>
+    <p class="dica">A IA entra quando o produto não está na base ou quando você pede uma segunda opinião. Ela classifica o produto e a ficha continua usando as regras da base.</p>
+
+    <fieldset class="opcoes-modo">
+      <legend class="sr-only">Modo</legend>
+      <label class="opcao"><input type="radio" name="modo" value="servidor"><span><strong>Servidor da empresa</strong> (recomendado)<small>A chave fica guardada no servidor (Worker). Veja <code>certificacao/README.md</code>.</small></span></label>
+      <label class="opcao"><input type="radio" name="modo" value="direto"><span><strong>Chave neste navegador</strong> (teste)<small>A chave fica salva só neste navegador. Use apenas em computador da equipe.</small></span></label>
+      <label class="opcao"><input type="radio" name="modo" value="desligada"><span><strong>Desligada</strong><small>Usa só a base interna.</small></span></label>
+    </fieldset>
+
+    <div class="modo-campos" data-modo="servidor">
+      <label class="campo"><span class="campo-rotulo">Endereço do servidor</span><input type="url" id="iaUrl" placeholder="https://opacote-certificacao-ia.SEU-USUARIO.workers.dev/analisar"></label>
+      <label class="campo"><span class="campo-rotulo">Senha de acesso (se configurada)</span><input type="password" id="iaToken" autocomplete="off"></label>
+    </div>
+    <div class="modo-campos" data-modo="direto">
+      <label class="campo"><span class="campo-rotulo">Chave da API Anthropic</span><input type="password" id="iaChave" placeholder="sk-ant-..." autocomplete="off"></label>
+    </div>
+
+    <div class="modal-acoes">
+      <button type="button" class="btn btn-fantasma" id="btnFecharIA">Cancelar</button>
+      <button type="submit" class="btn btn-escuro" value="salvar">Salvar</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
